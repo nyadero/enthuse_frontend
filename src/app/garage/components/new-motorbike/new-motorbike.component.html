@@ -1,0 +1,272 @@
+<p>new-motorbike works!</p>
+<main>
+    new motorbike to garage
+
+    <div>
+        <form [formGroup]="motorbikeForm" (ngSubmit)="$event.preventDefault(); addGarageMotorbike()">
+            <!-- name -->
+            <div class="form-control">
+                <label for="name">Name</label>
+                <input type="text" formControlName="name" placeholder="name" class="form-input">
+                <!-- display validation error -->
+                <div *ngIf="motorbikeForm.get('name')?.hasError('required') && motorbikeForm.get('name')?.touched">
+                    <h3 class="validation-error">Motorbike name is required</h3>
+                </div>
+            </div>
+
+            <!-- price -->
+            <div class="flex items-center  gap-2">
+                <!-- buying price -->
+                <div class="form-control w-full">
+                    <label for="name">Buying Price</label>
+                    <input type="number" formControlName="buyingPrice" placeholder="buying price" class="form-input">
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeForm.get('buyingPrice')?.hasError('required') && motorbikeForm.get('buyingPrice')?.touched">
+                        <h3 class="validation-error">Buying price is required</h3>
+                    </div>
+                </div>
+                <!-- current value -->
+                <div class="form-control w-full">
+                    <label for="name">Current value</label>
+                    <input type="number" formControlName="currentValue" placeholder="current value" class="form-input">
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeForm.get('currentValue')?.hasError('required') && motorbikeForm.get('currentValue')?.touched">
+                        <h3 class="validation-error">Motorbike current value is required</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- color and location -->
+            <div class="flex  items-center  gap-2">
+                <!-- color -->
+                <div class="form-control w-full">
+                    <label for="name">Color</label>
+                    <input type="text" formControlName="color" placeholder="color" class="form-input">
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeForm.get('color')?.hasError('required') && motorbikeForm.get('color')?.touched">
+                        <h3 class="validation-error">Motorbike color is required</h3>
+                    </div>
+                </div>
+                <!-- location -->
+                <div class="form-control w-full">
+                    <label for="name">Location</label>
+                    <input type="text" formControlName="location" placeholder="location" class="form-input">
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeForm.get('location')?.hasError('required') && motorbikeForm.get('location')?.touched">
+                        <h3 class="validation-error">Motorbikelocation is required</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- info -->
+            <div class="form-control w-full">
+                <label for="info">Info</label>
+                <input type="text" formControlName="info" placeholder="the story " class="form-input">
+                <!-- display validation error -->
+                <div *ngIf="motorbikeForm.get('info')?.hasError('required') && motorbikeForm.get('info')?.touched">
+                    <h3 class="validation-error">Motorbike info is required</h3>
+                </div>
+            </div>
+
+            <!-- perfomance modifications -->
+            <div class="form-control w-full">
+                <label for="performance">Performance Modifications</label>
+                <input type="text" formControlName="performanceModifications"
+                    placeholder="perfomance modifications done " class="form-input">
+                <!-- display validation error -->
+                <div
+                    *ngIf="motorbikeForm.get('performanceModifications')?.hasError('required') && motorbikeForm.get('performanceModifications')?.touched">
+                    <h3 class="validation-error">Motorbike performance modifications are required</h3>
+                </div>
+            </div>
+
+            <!-- cosmetic modifications -->
+            <div class="form-control w-full">
+                <label for="cosmetic">Cosmetic Modifications</label>
+                <input type="text" formControlName="cosmeticModifications" placeholder="cosmetic modifications done "
+                    class="form-input">
+                <!-- display validation error -->
+                <div
+                    *ngIf="motorbikeForm.get('cosmeticModifications')?.hasError('required') && motorbikeForm.get('cosmeticModifications')?.touched">
+                    <h3 class="validation-error">Motorbike cosmetic modifications are required</h3>
+                </div>
+            </div>
+
+            <!-- manufacture year and previous owners -->
+            <div class="flex  items-center  gap-2">
+                <!-- manufacture year -->
+                <div class="form-control w-full">
+                    <label for="yom">Manufacture Year</label>
+                    <input type="number" formControlName="manufactureYear" placeholder="manufacture year"
+                        class="form-input">
+
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeForm.get('manufactureYear')?.hasError('required') && motorbikeForm.get('manufactureYear')?.touched">
+                        <h3 class="validation-error">Motorbike manufacture year is required</h3>
+                    </div>
+                </div>
+                <!-- previous owners -->
+                <div class="form-control w-full">
+                    <label for="owners">Previous Owners</label>
+                    <input type="number" formControlName="previousOwners" placeholder="previous owners"
+                        class="form-input">
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeForm.get('previousOwners')?.hasError('required') && motorbikeForm.get('previousOwners')?.touched">
+                        <h3 class="validation-error">Motorbike previous owners is required</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- manufacturer and category -->
+            <div class="flex  items-center  gap-2">
+                <!-- manufacturer -->
+                <div class="form-control w-full">
+                    <label for="make">Manufacturer</label>
+                    <select formControlName="manufacturer" class="form-input">
+                        <option value="_">Manufacturer</option>
+                        <option value="{{manufacturer.value}}" *ngFor="let manufacturer of motorbikeManufacturers">
+                            {{manufacturer.name}} </option>
+                    </select>
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeForm.get('manufacturer')?.hasError('required') && motorbikeForm.get('manufacturer')?.touched">
+                        <h3 class="validation-error">Motorbike manufacturer is required</h3>
+                    </div>
+                </div>
+
+                <!-- category -->
+                <div class="form-control">
+                    <label for="model">Category</label>
+                    <select formControlName="category" class="form-input">
+                        <option value="_">Category</option>
+                        <option value="{{category.value}}" *ngFor="let category of motorbikeCategories">
+                            {{category.name}} </option>
+                    </select>
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeForm.get('category')?.hasError('required') && motorbikeForm.get('category')?.touched">
+                        <h3 class="validation-error">Motorbike category is required</h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- engine capacity and power -->
+            <div class="flex  items-center  gap-2">
+                <!-- engineCapacity -->
+                <div class="form-control w-full">
+                    <label for="engineCapacity">Engine Capacity</label>
+                    <input type="number" formControlName="engineCapacity" placeholder="engine capacity"
+                        class="form-input">
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeForm.get('engineCapacity')?.hasError('required') && motorbikeForm.get('engineCapacity')?.touched">
+                        <h3 class="validation-error">Motorbike engine capacity is required</h3>
+                    </div>
+                </div>
+
+                <!-- engine power -->
+                <div class="form-control w-full">
+                    <label for="enginePower">Engine Power</label>
+                    <input type="number" formControlName="enginePower" placeholder="engine power" class="form-input">
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeForm.get('enginePower')?.hasError('required') && motorbikeForm.get('enginePower')?.touched">
+                        <h3 class="validation-error">Motorbike engine power is required</h3>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- transmission and top topSpeed -->
+            <div class="flex  items-center  gap-2">
+                <!-- transmission -->
+                <div class="form-control w-full">
+                    <label for="transmission">Transmission</label>
+                    <select formControlName="transmissionType" class="border flex-1 w-full p-2 form-input">
+                        <option value="Default">Transmission</option>
+                        <option value="{{transmission.value}}" *ngFor="let transmission of transmission_types">
+                            {{transmission.name}} </option>
+                    </select>
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeForm.get('transmissionType')?.hasError('required') && motorbikeForm.get('transmissionType')?.touched">
+                        <h3 class="validation-error">Motorbike transmission type is required</h3>
+                    </div>
+                </div>
+
+                <!-- top speed -->
+                <div class="form-control w-full">
+                    <label for="topSpeed">Top speed km</label>
+                    <input type="number" formControlName="topSpeed" placeholder="top speed" class="form-input">
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeForm.get('topSpeed')?.hasError('required') && motorbikeForm.get('topSpeed')?.touched">
+                        <h3 class="validation-error">Motorbiketop speed is required</h3>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- fueltype, mileage  and consumption -->
+            <div class="flex  items-center  gap-2">
+                <!-- mileage -->
+                <div class="form-control w-full">
+                    <label for="mileage">mileage</label>
+                    <input type="number" formControlName="mileage" placeholder="mileage" class="form-input">
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeForm.get('mileage')?.hasError('required') && motorbikeForm.get('mileage')?.touched">
+                        <h3 class="validation-error">Motorbike mileage is required</h3>
+                    </div>
+                </div>
+
+                <!-- fueltype -->
+                <div class="form-control w-full">
+                    <label for="fuelType">Fuel type</label>
+                    <select formControlName="fuelType" class="border flex-1 w-full p-2 form-input">
+                        <option value="">Fuel Type</option>
+                        <option value="{{fueltype.value}}" *ngFor="let fueltype of fueltypes"> {{fueltype.name}}
+                        </option>
+                    </select>
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeForm.get('fuelType')?.hasError('required') && motorbikeForm.get('fuelType')?.touched">
+                        <h3 class="validation-error">Motorbike fuel type is required</h3>
+                    </div>
+                </div>
+
+                <!-- consumption -->
+                <div class="form-control w-full">
+                    <label for="consumption">Fuel consumption</label>
+                    <input type="text" formControlName="fuelConsumption" placeholder="fuel consumption"
+                        class="form-input">
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeForm.get('fuelConsumption')?.hasError('required') && motorbikeForm.get('fuelConsumption')?.touched">
+                        <h3 class="validation-error">Motorbike estimated fuel consumption is required</h3>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- photos -->
+            <div>
+                <app-fileupload (selectedFilesChanged)="getMotorbikePhotos($event)"
+                    styleMethod="listing"></app-fileupload>
+            </div>
+
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+
+            {{motorbikeForm.value | json}}
+        </form>
+    </div>
+</main>

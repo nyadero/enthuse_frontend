@@ -1,0 +1,18 @@
+<div class="rounded shadow-md bg-white p-2">
+    <a [routerLink]="['/clubs', club.id]">
+    <div class="h-60 flex items-center justify-center overflow-hidden relative">
+        <img src="{{club.clubCoverpic}}" alt="" loading="lazy" class="w-full object-cover rounded-sm">
+        <div class="h-10 w-10 flex items-center justify-center overflow-hidden absolute bottom-2 left-3 z-20 shadow-md rounded-3xl">
+            <img src="{{club.clubLogo}}" alt="" class="w-full object-cover" loading="lazy">
+        </div>
+    </div>
+    <div>
+        <div>
+            <h3>{{club.clubName}}</h3>
+             <h3>location</h3>
+        </div>
+        <!-- members count -->
+
+    </div>
+</a>
+</div>

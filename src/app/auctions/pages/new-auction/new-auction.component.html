@@ -1,0 +1,20 @@
+<main>
+    <h3>Add your Auction here</h3>
+    <div>
+        <div class="flex items-center gap-5 border-b-2 border-blue-500 z-50">
+            <button (click)="changeTab('vehicle-auction')" [class.active]="selectedTab === 'vehicle-auction'">Vehicle Auction</button>
+        <button (click)="changeTab('motorbike-auction')" [class.active]="selectedTab === 'motorbike-auction'">Motorbike Auction</button>
+        </div>
+
+        <!-- vehicle form -->
+        <div *ngIf="selectedTab === 'vehicle-auction' ">
+            <app-vehicle-auction-form></app-vehicle-auction-form>
+        </div>
+
+
+        <!-- motorbike form -->
+        <div *ngIf="selectedTab === 'motorbike-auction' ">
+           <app-motorbike-auction-form></app-motorbike-auction-form>
+        </div>
+    </div>
+</main>

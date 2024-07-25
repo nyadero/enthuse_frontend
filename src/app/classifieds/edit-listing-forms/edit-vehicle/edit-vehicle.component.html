@@ -1,0 +1,142 @@
+<main>
+    <p>edit-vehicle works!</p>
+    <!-- {{listing | json}} -->
+    <form [formGroup]="vehicleForm" (ngSubmit)="editVehicleListing()" >
+        <!-- listing name -->
+        <div class="flex flex-col my-1">
+            <label for="name">Name:</label>
+            <input type="text" class="form-input"  formControlName="name" placeholder="name of your listing" autofocus>
+        </div>
+
+        <!-- listing price -->
+        <div class="flex flex-col my-1">
+            <label for="price">Price:</label>
+            <input type="number" class="form-input"   formControlName="price" />
+        </div>
+
+        <!-- listing location -->
+         <div class="flex flex-col my-1">
+            <label for="location">Location:</label>
+            <input type="text" class="form-input" formControlName="location" />
+        </div>
+
+        <!-- listing description -->
+        <div class="flex flex-col my-1">
+            <label for="description">Description of your listing:</label>
+            <textarea cols="30" rows="10" type="text" class="form-input" formControlName="description"
+                placeholder="describe your listing here"></textarea>
+        </div>
+
+        <!-- listing photos -->
+        <!-- <app-fileupload formControlName="photos"></app-fileupload> -->
+        <app-fileupload (selectedFilesChanged)="onSelectedFilesChanged($event)"></app-fileupload>
+        {{selectedFiles | json }}
+        <!-- vehicle make -->
+        <div class="flex flex-col my-1">
+            <label for="make">Make of your Vehicle</label>
+            <input type="text" class="form-input" placeholder="make of your vehicle"   formControlName="make">
+        </div>
+        <!-- vehicle model -->
+        <div class="flex flex-col my-1">
+            <label for="model">Model of your Vehicle</label>
+            <input type="text" class="form-input" formControlName="model"  placeholder="model of your vehicle">
+        </div>
+        <!-- vehicle engine size -->
+        <div class="flex flex-col my-1">
+            <label for="engine_size">Engine Size in CC</label>
+            <input type="number" formControlName="engineSize"   class="form-input">
+        </div>
+        <!-- vehicle doors count -->
+        <div class="flex flex-col my-1">
+            <label for="doors_count">Doors count</label>
+            <input type="number" formControlName="doorsCount"   class="form-input">
+        </div>
+        <!-- vehicle seat count -->
+        <div class="flex flex-col my-1">
+            <label for="seat_count">Seat count</label>
+            <input type="number" formControlName="seatCount"   class="form-input">
+        </div>
+        <!-- vehicle mileage -->
+        <div class="flex flex-col my-1">
+            <label for="mileage">Mileage</label>
+            <input type="number" formControlName="mileage"   class="form-input">
+        </div>
+        <!-- vehicle transmission type -->
+        <div class="flex flex-col my-1">
+            <label for="transmission_type">Transmission Type</label>
+            <input type="text" class="form-input"   formControlName="transmissionType"
+                placeholder="transmission type of your vehicle">
+        </div>
+        <!-- vehicle body type -->
+        <div class="flex flex-col my-1">
+            <label for="body_type">Body Type</label>
+            <input type="text" class="form-input" formControlName="bodyType"  placeholder="Body type">
+        </div>
+        <!-- vehicle color -->
+        <div class="flex flex-col my-1">
+            <label for="color">Color</label>
+            <input type="text" class="form-input" formControlName="color"   placeholder="Color of your vehicle">
+        </div>
+        <!-- vehicle fuel type -->
+        <div class="flex flex-col my-1">
+            <label for="fuel_type">Fuel type</label>
+            <input type="text" class="form-input" formControlName="fuelType"   placeholder="fuel type">
+        </div>
+        <!-- vehicle fuel consumption -->
+        <div class="flex flex-col my-1">
+            <label for="fuel_consumptin">Estimated Fuel consumption </label>
+            <input type="text" class="form-input" formControlName="fuelConsumption"    placeholder="fuel consumption">
+        </div>
+        <!-- vehicle drivetrain -->
+        <div class="flex flex-col my-1">
+            <label for="drivetrain">Drivetrain</label>
+            <input type="text" class="form-input" formControlName="driveTrain"   placeholder="vehicle drivetrain">
+        </div>
+        <!-- vehicle acceleration -->
+        <div class="flex flex-col my-1">
+            <label for="acceleration">Acceleration</label>
+            <input type="text" class="form-input" formControlName="acceleration"    placeholder="acceleration">
+        </div>
+        <!-- vehicle top speed -->
+        <div class="flex flex-col my-1">
+            <label for="top_speed">Top speed</label>
+            <input type="number" formControlName="topSpeed"   class="form-input">
+        </div>
+        <!-- vehicle engine layout -->
+        <div class="flex flex-col my-1">
+            <label for="engine_layout">Engine layout</label>
+            <input type="text" class="form-input" formControlName="engineLayout"   placeholder="engine layout">
+        </div>
+        <!-- vehicle engine position -->
+        <div class="flex flex-col my-1">
+            <label for="engine_position">Engine position</label>
+            <input type="text" class="form-input" formControlName="enginePosition"   placeholder="engine position">
+        </div>
+        <!-- vehicle engine power -->
+        <div class="flex flex-col my-1">
+            <label for="model">Engine power in hp</label>
+            <input type="text" class="form-input" formControlName="enginePower"   placeholder="engine power">
+        </div>
+        <!-- vehicle engine aspiration -->
+        <div class="flex flex-col my-1">
+            <label for="engine_aspiration">Engine Aspiration</label>
+            <input type="text" class="form-input" formControlName="engineAspiration"   placeholder="engine aspiration">
+        </div>
+        <!-- previous owners count -->
+        <div class="flex flex-col my-1">
+            <label for="seller_type">Previous Owners</label>
+            <input type="number" class="form-input" formControlName="previousOwnersCount"   placeholder="seller type">
+        </div>
+        <!-- seller type -->
+        <div class="flex flex-col my-1">
+            <label for="seller_type">Seller Type</label>
+            <input type="text" class="form-input" formControlName="sellerType"  placeholder="seller type">
+        </div>
+
+        <div>
+            <button type="submit">Edit Vehicle</button>
+        </div>
+
+        {{vehicleForm.value | json }}
+</form>
+</main>

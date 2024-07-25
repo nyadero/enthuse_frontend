@@ -1,0 +1,8 @@
+<div  *ngIf="isLoading" class="flex items-center justify-center">
+  <h3>Loading image</h3>
+</div>
+<!-- {{file | json}} -->
+<div *ngIf="!isLoading" class="">
+    <img src="{{file.url}}" alt="{{file.fileName}}" (load)="imageLoaded()">
+    {{file.url}}
+</div>

@@ -1,0 +1,45 @@
+<app-loading-error-indicator [loading]="isLoading">
+    <main>
+        <div class="flex items-center gap-4 my-4">
+
+            <!-- new vehicle garage -->
+            <button routerLink="/garage/new-vehicle" class="bg-blue-500 p-2 rounded shadow text-white text-lg"
+                type="button">New
+                Vehicle garage</button>
+
+            <!-- new motorbike garage -->
+            <button routerLink="/garage/new-motorbike" class="bg-blue-500 p-2 rounded shadow text-white text-lg"
+                type="button">New motorbike garage</button>
+
+
+        </div>
+
+        <div *ngIf="garages.length <= 0; else displayGarages">
+            <h3>No garages for user</h3>
+        </div>
+    </main>
+</app-loading-error-indicator>
+
+<ng-template #displayGarages>
+
+    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div *ngFor="let garage of garages" class="bg-white p-2 rounded shadow">
+            <div class="flex items-center justify-between mb-1">
+                <h3>{{garage.name}}</h3>
+                <h3>Club: {{garage.club ? garage.club.clubName : "No club"}}</h3>
+            </div>
+            <div class="h-60 w-full flex items-center justify-center">
+                <img src="{{garage.photos[0] ? garage.photos[0].url : '/assets/car.jpg' }}" alt="{{garage.name}}"
+                    class="h-full w-full object-cover">
+            </div>
+            <div class="flex items-center justify-between  mt-1">
+                <button [routerLink]="['/garage/join-club', garage.id]">Join Club</button>
+                <div class="flex items-center gap-2">
+                    <button routerLink="">edit</button>
+                    <button (click)="deleteGarage(garage.id)">delete</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</ng-template>

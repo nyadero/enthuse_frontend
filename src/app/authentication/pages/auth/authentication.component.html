@@ -1,0 +1,45 @@
+<main>
+    <div class="h-screen flex items-center justify-center">
+        <div class="bg-yellow-100 w-1/2 rounded-sm shadow-md p-3">
+            <form [formGroup]="authenticationForm" (ngSubmit)="$event.preventDefault(); submitForm()">
+                <div *ngIf="!isLogin">
+                    <!-- name -->
+                    <div class="flex flex-col my-2">
+                        <label for="Email">Name</label>
+                        <input type="text" class="p-2 focus:border-blue-500 outline-none" formControlName="name"
+                            placeholder="Enter your full name"/>
+                    </div>
+                    <!-- username -->
+                    <div class="flex flex-col my-2">
+                        <label for="Username">Username</label>
+                        <input type="text" class="p-2 focus:border-blue-500 outline-none" formControlName="userName"
+                            placeholder="Enter a unique username"/>
+                    </div>
+                </div>
+
+                <!-- email -->
+                <div class="flex flex-col my-2">
+                    <label for="Email">Email</label>
+                    <input type="text" class="p-2 focus:border-blue-500 outline-none" formControlName="email"
+                        placeholder="Enter your email address"/>
+                </div>
+                <!-- password -->
+                <div class="flex flex-col my-2">
+                    <label for="Password">Password</label>
+                    <input type="password" class="p-2 focus:border-blue-500 outline-none" formControlName="password"/>
+                </div>
+                <!-- confirm password -->
+                <div *ngIf="!isLogin" class="flex flex-col my-2">
+                    <label for="Password">Confirm Password</label>
+                    <input type="password" class="p-2 focus:border-blue-500 outline-none" formControlName="confirmPassword"/>
+                </div>
+                <div>
+                    <button class="bg-blue-600 text-white p-2 rounded-md shadow-sm">{{isLogin ? "Login": "Signup"}}</button>
+                </div>
+                <div>
+                    <button type="button" (click)="toggleMode()" >Toggle mode</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,26 @@
+<p>club-members works!</p>
+<div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+    <div *ngFor="let member of members" class="bg-white rounded-md shadow-md cursor-pointer" [routerLink]="['/users', member.user.id]">
+      <div class="bg-blue-500 h-40 relative overflow-hidden ">
+        <img src="{{member.user.coverPicture}}" alt="{{member.user.name}}" class="w-full" >
+        <div class="h-10 w-10 overflow-hidden absolute left-5 right-0 bottom-1">
+            <img src="{{member.user.avatar}}" alt="{{member.user.name}}" class="w-full h-full rounded-full shadow-lg">
+        </div>
+      </div>
+      <div>
+        <h3>{{member.user.name}}</h3>
+        <button>Follow</button>
+         <div>
+           <div>
+             {{member.user.followersCount}} following
+           </div>
+
+           <div>
+             {{member.user.followingCount}} followers
+           </div>
+         </div>
+      </div>
+    </div>
+
+</div>
+

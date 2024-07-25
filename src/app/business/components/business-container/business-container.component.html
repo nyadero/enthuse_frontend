@@ -1,0 +1,9 @@
+<div class="border mb-2 ">
+  {{business.name}}
+  <div>
+    <button [routerLink]="['/business', business.name, 'manage']">Manage</button>
+
+    <button [routerLink]="['/business', business.name]">Edit</button>
+    <button>Delete</button>
+   </div>
+</div>

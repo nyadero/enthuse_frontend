@@ -1,0 +1,17 @@
+
+ <section class="w-2/4 max-sm:w-full mx-auto p-1 min-h-screen">
+
+<div *ngIf="isLoading" class="min-h-h flex items-center justify-center">
+  loading posts
+</div>
+
+<div *ngIf="!isLoading && posts.length < 1">
+  no posts found
+</div>
+
+<div *ngFor="let post of posts">
+  <app-post [post]="post" (likeEvent)="likePost($event)" (postClicked)="makePostActive($event)"
+    [selectedPost]="selectedPost" (deletePostEvent)="deletePost($event)"></app-post>
+</div>
+
+</section>

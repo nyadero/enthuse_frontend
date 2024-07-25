@@ -1,0 +1,25 @@
+<div class="bg-white my-2 rounded p-2">
+    <h3>General Info</h3>
+
+    <div class="my-2">
+        <p>{{user.about}}</p>
+        {{user.location}}
+        social links
+    </div>
+    <hr>
+
+    <div class="my-2">
+        <h3 class="mb-2">{{user.username}} interests</h3>
+        <div class="flex flex-wrap items-center gap-2">
+            <h3 *ngFor="let interest of user.interests" class="bg-gray-200 rounded shadow p-1">{{interest}}</h3>
+        </div>
+    </div>
+    <hr>
+
+    <div class="my-2">
+         <h3 class="mb-2">{{user.username}} brands</h3>
+         <div class="flex flex-wrap items-center gap-2">
+            <h3 *ngFor="let brand of user.brands" class="bg-gray-200 rounded shadow p-1">{{brand}}</h3>
+        </div>
+    </div>
+</div>

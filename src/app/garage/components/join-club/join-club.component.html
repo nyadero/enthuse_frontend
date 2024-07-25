@@ -1,0 +1,42 @@
+<main>
+<app-loading-error-indicator [loading]="isLoading">
+    <!-- input to search clubs -->
+    <form [formGroup]="searchClubForm">
+        <div class="my-2 flex items-center rounded-md shadow overflow-hidden">
+            <input type="search" class="flex-1 p-2" placeholder="e.g Porsche 911" formControlName="query">
+            <button class="bg-blue-500 text-white p-2" (click)="searchClubs()" >Search</button>
+        </div>
+    </form>
+  
+    <!-- show not found  -->
+    <main *ngIf="clubs.length <= 0; else displayClubs" >
+        <h3>No clubs found</h3>
+    </main>
+
+</app-loading-error-indicator>
+</main>
+
+<ng-template #displayClubs>
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+        <div *ngFor="let club of clubs">
+            <div class="bg-white p-2">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <div class="h-10 w-10 flex items-center justify-center overflow-hidden shadow rounded-2xl">
+                            <img src="{{club.clubLogo}}" alt="{{club.clubName}}" loading="lazy" class="w-full" >
+                         </div>
+                         <!-- name and members count -->
+                         <div>
+                             <h3>{{club.clubName}}</h3>
+                             <h4>{{club.totalMembers}} members</h4>
+                         </div>
+                    </div>
+                   
+                    <!-- join button -->
+                    <button class="bg-blue-500 text-white p-2 rounded shadow" (click)="joinClub(club.id)" >Join</button>
+                </div>
+            </div>
+          </div>
+    </section>
+ 
+</ng-template>

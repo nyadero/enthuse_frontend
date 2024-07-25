@@ -1,0 +1,28 @@
+<section class="relative">
+
+    <div class="my-4">
+        <button class="bg-blue-500 text-white py-2 px-3 rounded-sm shadow-sm">Add Manager</button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <app-business-administrator *ngFor="let manager of businessManagers"
+            [manager]="manager" [businessId]="businessId" (emitRevokeEvent)="getRevokeEvent($event)" ></app-business-administrator>
+    </div>
+</section>
+
+
+ <div class="bg-green-500 p-2 rounded-md absolute mx-auto my-auto">
+      <input type="text" placeholder="search users to make page managers" (input)="updateFilter('search', $any($event.target).value)" class="form-input">  
+
+      <div>
+        show search results
+        <!-- {{users | json}} -->
+        <div *ngFor="let user of users">
+            <div class="w-12 h-12 overflow-hidden">
+                <img src="{{user.avatar}}" alt="{{user.name}}" class="w-full">
+            </div>
+            {{user.name}}
+            <button (click) = "makeManager(user.id)" >Make Manager</button>
+        </div>
+      </div>
+</div>

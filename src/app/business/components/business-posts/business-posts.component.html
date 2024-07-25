@@ -1,0 +1,19 @@
+<div class="mx-auto w-2/3 sm:w-3/4 max-sm:w-full">
+<div>
+     <app-new-post [businessId]="businessId" (newlyAddedPost)="getNewPost($event)"></app-new-post>
+</div>
+{{httpResponse.message}}
+
+<div *ngIf="posts.length < 1; else postsList">
+    no posts found
+  </div>
+
+  <ng-template #postsList>
+    <div *ngFor="let post of posts">
+    <app-post [post]="post" (deletePostEvent)="getDeletePost($event)" ></app-post>
+   </div>
+  </ng-template>
+</div>
+
+<!-- {{posts | json}} -->
+

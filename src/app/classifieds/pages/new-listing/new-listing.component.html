@@ -1,0 +1,16 @@
+<main>
+    <p>new-listing works!</p>
+    <div class="flex items-center gap-4 my-3 overflow-x-auto">
+        <button routerLink="/classifieds/new-vehicle" class="listing-type">Vehicle</button>
+        <button routerLink="/classifieds/new-motorbike" class="listing-type">Motorbike</button>
+        <button (click)="bicycleListingType()" class="listing-type">Bicycle</button>
+        <button (click)="boatListingType()" class="listing-type">Boat</button>
+        <button (click)="aeroplaneListingType()" class="listing-type">Aeroplane</button>
+    </div>
+
+    <hr class="border-1 border-black">
+
+   
+
+    <!-- {{listingForm.value | json }} -->
+</main>

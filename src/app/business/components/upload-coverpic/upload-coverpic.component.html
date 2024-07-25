@@ -1,0 +1,4 @@
+<form [formGroup]="uploadAvatarForm" (ngSubmit)="$event.preventDefault(); uploadCoverpic()">
+ <app-fileupload (selectedFilesChanged)="onSelectedFilesChanged($event)"></app-fileupload>
+ <button type="submit">Upload</button>
+</form>

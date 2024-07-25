@@ -1,0 +1,53 @@
+<div class="p-2 my-2 border-l-2 border-solid border-blue-600 pl-5 bg-white shadow-sm ">
+    <div class="flex items-center gap-3 mb-2">
+        <div class="w-12 h-12 flex items-center justify-center rounded-full shadow overflow-hidden">
+            <img src={{inquiry.user.avatar}} alt={{inquiry.user.name}} loading="lazy" class="object-cover h-full w-full">
+        </div>
+
+        <!-- username and date asked -->
+        <div>
+            <h3>{{inquiry.user.name}}</h3>
+            <span>{{inquiry.createdAt}}</span>
+        </div>
+    </div>
+    <hr>
+    
+    <div *ngIf="!isEditing()">
+        <h3 class="my-1">{{inquiry.comment}}</h3>
+    </div>
+
+    <app-inquiry-input *ngIf="isEditing()" submitLabel="Update" (newInquiry)="getNewInquiry($event)"
+        [hasCancelButton]="true" [initialText]="inquiry.comment" [listingId]="inquiry.listing?.id"
+        [inquiryId]="inquiry.id" action="Edit"></app-inquiry-input>
+    <hr>
+
+    <div class="flex items-center">
+        <div class="flex items-center gap-3 space-x-3">
+            <button class="p-1 shadow" (click)="showCommentReplies()" >{{inquiry.repliesCount}} replies</button>
+            <button *ngIf="canEdit"
+                (click)="setActiveInquiry.emit({id: inquiry.id, type: activeInquiryType.editing})">Edit</button>
+
+            <button *ngIf="canReply" (click)="setActiveInquiry.emit({id: inquiry.id, type: activeInquiryType.replying})">
+                Reply</button>
+
+            <button *ngIf="canDelete" (click)="deleteInquiry.emit(inquiry.id)">Delete</button>
+        </div>
+    </div>
+
+    <!-- reply form -->
+    <app-inquiry-input *ngIf="isReplying()" submitLabel="Reply" (isReplying())="isReplying()"
+        (newInquiry)="getNewInquiry($event)" [activeInquiry]="activeInquiry" [listingId]="inquiry.listing?.id" [garageId]="inquiry.garage?.id" [postId]="inquiry.post?.id"
+        [inquiryId]="inquiry.id" action="Reply"></app-inquiry-input>
+
+    <!-- <div class="ml-2" >
+        <app-inquiry *ngFor="let inquiry of replies" [inquiry]="inquiry"
+            (setActiveInquiry)="setActiveInquiry.emit($event)" [activeInquiry]="activeInquiry"
+            (deleteInquiry)="deleteInquiryReply($event)"></app-inquiry>
+    </div>
+     -->
+    <!-- show comment replies -->
+    <!-- <div class="mt-2 ml-2" *ngIf="showReplies" >
+        <app-comment-replies [commentId]="inquiry.id"></app-comment-replies>
+    </div> -->
+
+</div>

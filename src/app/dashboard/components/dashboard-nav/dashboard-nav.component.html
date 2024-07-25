@@ -1,0 +1,13 @@
+<div class="w-full bg-green-300 my-4" [style.transform]="'translateX(' + (-currentSlideIndex * 100) + '%)'">
+    <button (click)="previousSlide()" *ngIf="!isAtFirstSlide()">Previous</button>
+    <div class="flex items-center gap-5 border-b-2 border-blue-500 z-50 bg-gray-400 overflow-x-scroll">
+        <button (click)="changeTab('account')" [class.active]="selectedTab === 'account'">Account</button>
+        <button (click)="changeTab('classifieds')" [class.active]="selectedTab === 'classifieds'">My
+            classifieds</button>
+        <button (click)="changeTab('businesses')" [class.active]="selectedTab === 'businesses'">My pages</button>
+        <button (click)="changeTab('forums')" [class.active]="selectedTab === 'forums'">My Forums</button>
+        <button (click)="changeTab('activity')" [class.active]="selectedTab === 'activity'">Activity</button>
+        <button (click)="changeTab('garage')" [class.active]="selectedTab === 'garage'">Garage</button>
+    </div>
+    <button (click)="nextSlide()" *ngIf="!isAtLastSlide()">Next</button>
+</div>

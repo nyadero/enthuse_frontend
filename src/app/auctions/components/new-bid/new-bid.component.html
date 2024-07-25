@@ -1,0 +1,12 @@
+<p>new-bid works!</p>
+<form action="" [formGroup]="newBidForm" (ngSubmit)="sendBid()" >
+    <!-- amount -->
+    <div class="form-control">
+        <label for="">Amount</label>
+        <input type="number" class="form-input" formControlName="amount">
+    </div>
+
+    <div>
+        <button type="submit">Send Bid</button>
+    </div>
+</form>

@@ -1,0 +1,34 @@
+<div class="relative">
+
+    <div>
+        <button (click)="showNewRating()">Rate this business</button>
+    </div>
+
+    <div *ngIf="addNewRating" class="transition-all delay-1000">
+        <!-- <app-new-rating (cancelRating)="cancelRating($event)" [businessId]="businessId"></app-new-rating> -->
+    </div>
+
+
+    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 my-2">
+        <div *ngFor="let rating of ratings" class="shadow rounded p-2 bg-white">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 overflow-hidden rounded-lg">
+                        <img src="{{rating.user.avatar}}" alt="{{rating.user.name}}" class="w-full object-cover">
+                    </div>
+                    <h3>{{rating.user.name}}</h3>
+                </div>
+
+                <h4>{{rating.createdAt}}</h4>
+            </div>
+            <div>
+                {{rating.review}}
+            </div>
+            <!-- <app-rating-stars [selectedValue]="rating.rating"></app-rating-stars> -->
+            <div>
+                <button (click)="deleteRating(rating.id)">Delete</button>
+                <button>Edit</button>
+            </div>
+        </div>
+    </div>
+</div>

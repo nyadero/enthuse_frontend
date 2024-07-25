@@ -1,0 +1,8 @@
+<div class="flex scrollable shadow p-2 bg-white w-full sticky " >
+    <div *ngFor="let filter of filters | keyvalue" class="border-2 rounded shadow p-1 ">
+        {{ filter.key }} : {{ filter.value }}
+        <button (click)="deleteFilter(filter.key)">X</button>
+    </div>
+
+    <button (click)="showFilters()">{{isShowFilters ? "Hide" : "Show"}} filters</button>
+</div>

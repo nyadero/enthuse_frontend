@@ -1,0 +1,7 @@
+<app-loading-error-indicator [loading]="isLoading" >
+    <div class="flex items-center justify-center">
+        <img [src]="listingFiles[0] ? listingFiles[0].url : '/assets/car.jpg' " alt=""
+                loading="lazy"
+                class="w-full h-60 object-cover rounded shadow-sm">
+    </div>
+</app-loading-error-indicator>

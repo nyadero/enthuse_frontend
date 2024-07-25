@@ -1,0 +1,64 @@
+<div class="bg-white mb-4 p-2 rounded-md shadow-md">
+    <a [routerLink]="['/classifieds', listing.id]">
+        <h3 class="capitalize mb-2">{{listing.name}}</h3>
+        <div class="h-52 flex items-center justify-center bg-gray-100 overflow-hidden">
+            <img [src]="listing.listingFiles.length ? listing.listingFiles[0].url : '/assets/car.jpg' " alt=""
+                (load)="imageLoaded()"
+                class="h-52 w-full object-cover rounded shadow-sm">
+        </div>
+        <h4 class="my-1">{{listing.price}}</h4>
+        <div class="flex items-center space-x-3 justify-evenly">
+            <!-- transmission type -->
+            <div class="flex items-center flex-col">
+                <div class="flex items-center justify-center p-2 bg-blue-400 h-10 w-10 rounded-2xl ">
+                    icon
+                </div>
+                <span class="capitalize">{{listing.listingType == listingType.Vehicle ? listing.vtransmissionType : listing.mtransmissionType }}</span>
+            </div>
+
+            <!-- fuel type -->
+            <div class="flex items-center flex-col">
+                <div class="flex items-center justify-center p-2 bg-blue-400 h-10 w-10 rounded-2xl">
+                    icon
+                </div>
+                <span class="capitalize">{{listing.listingType == listingType.Vehicle ? listing.vfuelType : listing.mfuelType }}</span>
+            </div>
+
+            <!-- year -->
+            <div class="flex items-center flex-col">
+                <div class="flex items-center justify-center p-2 bg-blue-400 h-10 w-10 rounded-2xl">
+                    icon
+                </div>
+                <span class="capitalize">{{listing.manufactureYear}}</span>
+            </div>
+
+            <!-- mileage -->
+            <div class="flex items-center flex-col">
+                <div class="flex items-center justify-center p-2 bg-blue-400 h-10 w-10 rounded-2xl ">
+                    icon
+                </div>
+                <span class="capitalize">{{listing.listingType == listingType.Vehicle ? listing.vmileage : listing.mmileage }}</span>
+
+            </div>
+
+            <!-- body type -->
+            <div class="flex items-center flex-col">
+                <div class="flex items-center justify-center p-2 bg-blue-400 h-10 w-10 rounded-2xl ">
+                    icon
+                </div>
+                <span class="capitalize">{{listing.listingType == "Vehicle" ? listing.bodyType :
+                    listing.motorbikeCategory }}</span>
+
+<span *ngIf="listing.listingType == listingType.Spares" class="capitalize">{{listing.manufactureYear}}</span>
+
+            </div>
+        </div>
+        <hr class="my-1">
+        <div class="flex items-center justify-between">
+            <h3>{{listing.sellerType}}</h3>
+            <h3 class="capitalize">{{listing.location}}</h3>
+        </div>
+
+    </a>
+
+</div>

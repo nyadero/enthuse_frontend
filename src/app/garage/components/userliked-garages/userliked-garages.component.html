@@ -1,0 +1,9 @@
+<main>
+    <p>userliked-garages works!</p>
+    <!-- {{garages | json}} -->
+
+    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <app-garage-item *ngFor="let garage of garages" [garage]="garage"></app-garage-item>
+    </div>
+</main>
+

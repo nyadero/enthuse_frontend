@@ -1,0 +1,40 @@
+<app-loading-error-indicator [loading]="isLoading">
+  
+<div class="hero">
+
+</div>
+
+<main class="py-3">
+      <!-- search bar -->
+      <div>
+            search bar
+      </div>
+
+      <!-- quick navigation -->
+      <div class="flex items-center justify-between my-2">
+            <div>
+                  <h3>All</h3>
+            </div>
+
+            <div>
+                  <!-- my garage -->
+                  <button routerLink="/garage/user-garage">My Garage</button>
+            </div>
+      </div>
+
+      <div *ngIf="garages.length <= 0; else displayGarages">
+            <h3>No garages found</h3>
+      </div>
+    
+</main>
+
+</app-loading-error-indicator>
+
+
+<ng-template #displayGarages>
+      <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <app-garage-item *ngFor="let garage of garages" [garage]="garage"></app-garage-item>
+      </div>
+</ng-template>
+
+

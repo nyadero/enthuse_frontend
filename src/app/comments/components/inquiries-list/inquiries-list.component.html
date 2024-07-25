@@ -1,0 +1,24 @@
+{{postId}}
+listing id {{listingId}}
+<div class="my-3">
+    <app-inquiry-input [listingId]="listingId" [postId]="postId" [garageId]="garageId" (newInquiry)="getNewInquiry($event)" [activeInquiry] = "activeInquiry" submitLabel="Comment" ></app-inquiry-input>
+</div>
+
+<div *ngIf="inquiriesList.length <= 0; else inquiriesContainer" class="h-52">
+   <h3>{{httpResponse | json}}</h3>
+</div>
+
+
+<ng-template #inquiriesContainer >
+    <h3>found</h3>
+<div *ngFor="let inquiry of inquiriesList">
+    <app-inquiry [inquiry]="inquiry" (setActiveInquiry)="setActiveInquiry($event)" [activeInquiry] = "activeInquiry" (deleteInquiry)="deleteInquiry($event)" ></app-inquiry>
+ </div>
+
+<button *ngIf="!isSeeMoreHidden && listingId" [routerLink]="['/classifieds/comments', listingId]">See all inquiries</button>
+<button *ngIf="!isSeeMoreHidden && garageId" [routerLink]="['/garage/comments', garageId]">See all Comments</button>
+
+
+</ng-template>
+<!--  -->
+<!-- {{inquiriesList | json}} -->

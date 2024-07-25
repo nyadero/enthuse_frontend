@@ -1,0 +1,17 @@
+{{business.id}}
+<a [routerLink]="['/business', business.name, 'new-vehicle']" >New Vehicle</a>
+<a [routerLink]="['/business', business.name, 'new-motorbike']" >New motorbike</a>
+
+  <div *ngIf="classifieds.length <= 0; else listingsList">
+        {{httpResponse.message}}
+    </div>
+
+
+    <ng-template #listingsList>
+        <section class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div *ngFor="let listing of classifieds">
+                <!-- <app-listing [listing]="listing"></app-listing> -->
+            </div>
+        </section>
+
+    </ng-template>

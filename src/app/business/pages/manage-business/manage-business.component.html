@@ -1,0 +1,71 @@
+<div class="relative h-fit">
+    <div class="h-60 overflow-hidden flex items-center justify-center relative"
+        *ngIf="!isUploadingCoverPic; else uploadCoverPic">
+        <img src="{{business.coverPic}}" alt="" class="w-full object-cover" *ngIf="business.coverPic">
+        <img src="./assets/car.jpg" alt="default coverPic" *ngIf="!business.coverPic">
+        <button (click)="editCoverPic()" class="absolute mx-auto bg-blue-500 p-2 rounded-md">Edit</button>
+    </div>
+</div>
+
+<main  class="">
+    <div class="flex gap-4 items-center absolute top-24 mx-auto">
+        <div class="h-36 w-36 overflow-hidden flex items-center gap-2" *ngIf="!isUploadingLogo; else uploadLogo">
+            <img src="{{business.logo}}" alt="" class="w-full h-full object-cover rounded-md shadow-md" *ngIf="business.logo">
+            <img src="./assets/car.jpg" alt="default coverPic" class="w-full object-cover rounded-md shadow-md"  *ngIf="!business.logo">
+        </div>
+        <button (click)="editLogo()" class="bg-blue-500 p-2 rounded-md">Edit</button>
+    </div>
+
+    <!-- tabs -->
+    <div class="bg-white my-3 shadow rounded flex items-center space-x-3 p-2 overflow-x-auto">
+        <button (click)="changeTab('edit')" [class.active]="selectedTab === 'edit'">Edit Page</button>
+        <div (click)="changeTab('services')" [class.active]="selectedTab === 'services'">Services</div>
+        <div (click)="changeTab('products')" [class.active]="selectedTab === 'products'">Products & Classifieds</div>
+        <div (click)="changeTab('posts')" [class.active]="selectedTab === 'posts'">Posts</div>
+        <div (click)="changeTab('admins')" [class.active]="selectedTab === 'admins'">Admins & Managers</div>
+        <div (click)="changeTab('insights')" [class.active]="selectedTab === 'insights'">Insights and Numbers</div>
+    </div>
+
+    <!-- show edit component if tab is about -->
+    <div *ngIf="selectedTab === 'edit' ">
+        <app-edit-business [business]="business"></app-edit-business>
+    </div>
+
+      <!-- show services component if tab is services -->
+    <div *ngIf="selectedTab === 'services' ">
+        <app-business-services [businessServices]="business.serviceList" [businessId] = "business.id" ></app-business-services>
+    </div>
+
+    <!-- show classifieds component if tab is clasifieds -->
+    <div *ngIf="selectedTab === 'products' ">
+        <app-business-classifieds [business]="business"></app-business-classifieds>
+    </div>
+
+    <!-- show posts component if tab is posts -->
+    <div *ngIf="selectedTab === 'posts' ">
+        <app-business-posts [businessId]="business.id"></app-business-posts> <!-- pass the business id as input -->
+    </div>
+
+    <!-- show edit component if tab is about -->
+    <div *ngIf="selectedTab === 'admins' ">
+        <app-business-managers [businessId]="business.id" ></app-business-managers>
+    </div>
+
+    <!-- show edit component if tab is about -->
+    <div *ngIf="selectedTab === 'insights' ">
+        <app-business-insights></app-business-insights>
+    </div>
+
+
+    <!-- {{business | json}} -->
+
+</main>
+
+
+<ng-template #uploadCoverPic>
+    <!-- <app-upload-coverpic [businessId]="business.id" [isUploadingLogo]="false" ></app-upload-coverpic> -->
+</ng-template>
+
+<ng-template #uploadLogo>
+    <!-- <app-upload-coverpic [businessId]="business.id" [isUploadingLogo]="true" ></app-upload-coverpic> -->
+</ng-template>

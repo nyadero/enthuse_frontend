@@ -1,0 +1,4 @@
+<p>comment-replies works!</p>
+ <app-inquiry *ngFor="let inquiry of replies" [inquiry]="inquiry"
+            (setActiveInquiry)="setActiveInquiry.emit($event)" [activeInquiry]="activeInquiry"
+            (deleteInquiry)="deleteInquiryReply($event)"></app-inquiry>

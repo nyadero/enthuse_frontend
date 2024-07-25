@@ -1,0 +1,17 @@
+<div *ngIf="isLoading" class="h-80 flex items-center justify-center">
+    <h3>Loading garages</h3>
+</div>
+
+<div class="my-2 flex items-center gap-2 overflow-x-auto whitespace-nowrap scrollbar-hidden">
+    <!-- <app-garage-item *ngFor="let garage of garages" [garage]="garage" class="w-80"></app-garage-item> -->
+    <div class="bg-white rounded shadow p-2 cursor-pointer w-80" *ngFor="let garage of garages" [routerLink]="['/garage', garage.id]">
+     <div class="h-60 w-60  flex items-center justify-center">
+          <img src="{{garage.photos[0] ? garage.photos[0] : '/assets/car.jpg' }}" alt="{{garage.name}}" class="h-full w-full object-cover" >
+     </div>
+     <div class="flex items-center justify-between mt-2">
+             <h3 class="capitalize">{{garage.name}}</h3>
+             <h3 class="capitalize" >{{garage.location}}</h3>
+     </div>
+</div>
+
+ </div>

@@ -1,0 +1,70 @@
+<main>
+    <p>create a page for your business here</p>
+
+    <form [formGroup]="businessForm" (ngSubmit)="addBusinessPage()" >
+        <!-- name of your business -->
+        <div class="my-2">
+            <label for="name">Name of your business</label>
+            <input type="text" placeholder="name of your business" formControlName="name" class="form-input">
+        </div>
+        <!-- location -->
+        <div class="my-2">
+            <label for="location">Location of your business</label>
+            <input type="text" placeholder="location of your business" formControlName="location" class="form-input">
+        </div>
+        <!-- category -->
+        <div class="my-2">
+            <label for="category">Category of your business</label>
+            <input type="text" placeholder="category of your business" formControlName="category" class="form-input">
+        </div>
+        <!-- about -->
+        <div class="my-2">
+            <label for="about">About your business</label>
+            <input type="text" placeholder="about your business" formControlName="about" class="form-input">
+        </div>
+        <!-- description -->
+        <div class="my-2">
+            <label for="description">Description of your business</label>
+            <input type="text" placeholder="description of your business" formControlName="description" class="form-input">
+        </div>
+        <!-- contact info -->
+        <h3>Contact Info</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4" formGroupName="contactInfo">
+            <!-- email -->
+            <div>
+                <label for="email">Email</label>
+                <input type="email" placeholder="business email" class="form-input" formControlName="email" >
+            </div>
+            <!-- twitter -->
+            <div>
+                <label for="twitter">Twitter url</label>
+                <input type="text" placeholder="twitter" class="form-input" formControlName="twitter" >
+            </div>
+            <!-- linkdedin -->
+            <div>
+                <label for="linkedin">Linkedin url</label>
+                <input type="text" placeholder="linkedin" class="form-input" formControlName="linkedin" >
+            </div>
+            <!-- facebbook -->
+            <div>
+                <label for="">Facebook url</label>
+                <input type="text" placeholder="facebook" class="form-input" formControlName="facebook">
+            </div>
+            <!-- website -->
+            <div>
+                <label for="website">Website</label>
+                <input type="text" placeholder="website" class="form-input" formArrayName="website" formControlName="website">
+            </div>
+            <!-- instagram -->
+            <div>
+                <label for="instagram">Instagram</label>
+                <input type="text" placeholder="instagram" class="form-input" formControlName="instagram">
+            </div>
+        </div>
+
+        <div>
+            <button type="submit">Add business</button>
+        </div>
+    </form>
+    {{businessForm.value | json}}
+</main>

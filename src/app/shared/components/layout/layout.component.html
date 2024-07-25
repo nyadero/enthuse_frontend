@@ -1,0 +1,23 @@
+
+<section>
+
+<div class="sticky top-0 z-10 w-full shadow-md">
+    <app-navbar (toggleShowNavbar)="getToggleState($event)" ></app-navbar>
+  </div> 
+
+
+  <div class="relative">
+    <div *ngIf="showSidebar" class="absolute left-2 right-2 top-2">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <section class="flex-1 min-h-h">
+        <router-outlet></router-outlet>
+    </section>
+
+  </div>
+
+  <div>
+     <app-footer></app-footer>
+  </div>
+</section>

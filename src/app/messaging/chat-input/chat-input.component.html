@@ -1,0 +1,7 @@
+<p>chat-input works!</p>
+<div>
+    <form [formGroup]="messageForm" (ngSubmit)="$event.preventDefault(); submitForm()" >
+        <input type="text" placeholder="your message" class="p-2 w-full" formControlName="message" >
+    </form>
+</div>
+{{messageForm.value|json}}

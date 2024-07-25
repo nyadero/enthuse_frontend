@@ -1,0 +1,16 @@
+<div class="horizontal-slider-container">
+  <!-- Content goes here -->
+  <div class="content" [style.transform]="'translateX(' + (-currentSlideIndex * 100) + '%)'">
+    <!-- Your content slides go here -->
+    <div *ngFor="let item of items" class="slide">
+      <app-image-loader [file]="item" ></app-image-loader>
+      <!-- Display your item content here -->
+     <!-- <img src="{{item.url}}" alt="" loading="lazy"> -->
+    </div>
+  </div>
+
+  <!-- Navigation buttons -->
+  <button (click)="previousSlide()" *ngIf="!isAtFirstSlide()">Previous</button>
+  <button (click)="nextSlide()" *ngIf="!isAtLastSlide()">Next</button>
+</div>
+

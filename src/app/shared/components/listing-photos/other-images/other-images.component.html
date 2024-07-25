@@ -1,0 +1,9 @@
+
+<div class="flex items-center gap-4 my-2 overflow-x-scroll scroll-m-0">
+  <div *ngFor="let image of otherImages">
+    <div class="overflow-hidden flex items-center justify-center shadow rounded h-24 w-24">
+      <img [src]="image.url" alt="" (click)="selectImage(image)" loading="lazy" class="w-full h-full object-cover cursor-pointer"
+        [class]="{ 'border-blue-500 border-2': image === selectedImage }">
+    </div>
+  </div>
+</div>

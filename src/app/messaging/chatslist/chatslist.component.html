@@ -1,0 +1,23 @@
+<div class="w-80 bg-white shadow rounded p-2 max-sm:w-full max-sm:bg-slate-500 max-sm:flex max-sm:items-center max-sm:h-max max-sm:gap-2">
+    <div class="mb-2">
+        <button routerLink="/chat/new-chat">+</button>
+    </div>
+
+    <div>
+        <div *ngIf="chats.length < 1; else chatsList">
+            <h3>{{httpResponse?.message}}</h3>
+        </div>
+    </div>
+</div>
+
+<ng-template #chatsList>
+    <div *ngFor="let chat of chats">
+        <div class="bg-gray-100 shadow-sm mb-2 max-sm:gap-2 max-sm:flex" (click) = loadChatDetails(chat.id) >
+            <div class="h-10 w-10 flex items-center justify-center rounded-full overflow-hidden">
+                <img src="{{chat.recipient.avatar}}" alt={{chat.recipient.name}} class="w-full h-full object-cover">
+            </div>
+            <h3 class="max-sm:hidden">{{chat.recipient.name}}</h3>
+        </div>
+    </div>
+    <!-- {{chats|json}} -->
+</ng-template>

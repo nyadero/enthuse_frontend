@@ -1,0 +1,18 @@
+<!-- {{businessServices | json}} -->
+<div class="">
+    <app-new-business-service [businessId]="businessId" (emitNewService)="getNewService($event)"></app-new-business-service>
+
+
+    <div *ngIf="businessServices.length < 1; else showServices">
+        <h3>No services added by this page</h3>
+    </div>
+
+</div>
+
+
+
+<ng-template #showServices>
+     <div *ngFor="let service of businessServices" class="bg-white rounded-sm shadow-sm p-2 mb-2">
+        <app-business-service [service]="service" [isManaging] = "true" [businessId] = "businessId" (emitDeleteEvent)="getDeleteEvent($event)" ></app-business-service>
+    </div>
+</ng-template>

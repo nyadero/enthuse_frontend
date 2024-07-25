@@ -1,0 +1,14 @@
+<div class="h-full relative flex items-center justify-center overflow-hidden" *ngIf="!isEditingAvatar; else updateAvatar">
+    <img src="{{user.coverPicture}}" alt="" class="w-full object-cover" >
+    <button (click)="toggleEdit()" class="absolute bottom-0 right-0" >Edit Cover</button>
+</div>
+
+<ng-template #updateAvatar>
+<form [formGroup]="uploadAvatarForm" (ngSubmit)="$event.preventDefault(); uploadCoverpic()">
+ <app-fileupload (selectedFilesChanged)="onSelectedFilesChanged($event)"></app-fileupload>
+ <button type="submit">Upload</button>
+</form>
+</ng-template>
+
+<!-- {{user.coverPicture}} -->
+

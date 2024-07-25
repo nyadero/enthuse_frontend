@@ -1,0 +1,26 @@
+<div class="p-3 bg-white static rounded shadow-md">
+  <form class="h-fit" [formGroup]="newPostForm" (ngSubmit)="$event.preventDefault(); submitPost()">
+    <input type="text" placeholder="What are enthusing today?" formControlName="description"
+      class="w-full bg-inherit border-none outline-none mb-2">
+
+    <!-- show photo input if post type is of type text -->
+    <div *ngIf="postType == 'Media' " class="my-4">
+      <app-fileupload (selectedFilesChanged)="onSelectedFilesChanged($event)" styleMethod="posts"></app-fileupload>
+    </div>
+
+
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <button (click)="showTextInput()" type="button" >Text</button>
+        <button (click)="showPhotoInput()" type="button" >Photo</button>
+      </div>
+
+      <div>
+        <button>Submit</button>
+      </div>
+    </div>
+  </form>
+
+  {{newPostForm.value | json}}
+  {{postType.toUpperCase()}}
+</div>

@@ -1,0 +1,44 @@
+<section>
+
+   <main>
+      <!-- search input -->
+      <div class="">
+         <app-search-input></app-search-input>
+      </div>
+
+      <!-- categories, tabs -->
+      <div class="bg-white shadow-md rounded-md my-2 flex items-center justify-evenly overflow-hidden">
+         <button (click)="changeTab('profiles')" [class.active]="selectedTab === 'profiles'"
+            class="border-r-2 solid to-black w-full p-2">Profiles</button>
+         <button (click)="changeTab('posts')" [class.active]="selectedTab === 'posts'"
+            class="border-r-2 solid to-black w-full  p-2">Posts</button>
+         <button (click)="changeTab('garage')" [class.active]="selectedTab === 'garage'"
+            class="border-r-2 solid to-black w-full  p-2">Garage</button>
+         <button (click)="changeTab('clubs')" [class.active]="selectedTab === 'clubs'"
+            class="w-full  p-2">Clubs</button>
+      </div>
+   </main>
+
+
+
+   <!-- show profiles if tab is profiles -->
+   <div *ngIf="selectedTab == 'profiles' ">
+      <app-profiles></app-profiles>
+   </div>
+
+   <!-- show posts -->
+   <div *ngIf="selectedTab == 'posts' ">
+      <app-posts></app-posts>
+   </div>
+
+   <!-- garage -->
+   <div *ngIf="selectedTab == 'garage' ">
+      <app-garages></app-garages>
+   </div>
+
+   <!-- forums -->
+   <div *ngIf="selectedTab == 'clubs' ">
+      <app-clubs></app-clubs>
+   </div>
+
+</section>

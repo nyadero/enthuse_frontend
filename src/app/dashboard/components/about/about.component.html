@@ -1,0 +1,84 @@
+<div>
+<form [formGroup]="aboutForm" (ngSubmit)="$event.preventDefault(); updateInfo()">
+        <!-- name -->
+        <div>
+            <label for="name">Name</label>
+            <input type="text" class="form-input" formControlName="name">
+        </div>
+        <!-- username -->
+         <div>
+            <label for="name">Username</label>
+            <input type="text" class="form-input" formControlName="username">
+        </div>
+        <!-- about -->
+        <div>
+            <label for="about">About yourself</label>
+            <textarea formControlName="about" id="" cols="30" rows="10" class="form-input"></textarea>
+        </div>
+
+         <!-- location -->
+         <div>
+            <label for="location">Your location</label>
+            <input type="text" class="form-input" formControlName="location">
+        </div>
+
+        <!-- interests -->
+         <div class="my-2">
+            <label for="interests">Your Interests</label>
+           <app-tags-input (emitTagsEvent)="getEmittedTags($event)" [tags]="user.interests" ></app-tags-input>
+        </div>
+
+         <!-- brands -->
+         <div>
+            <label for="brands">Your brands</label>
+            <app-tags-input (emitTagsEvent)="getEmittedBrands($event)" [tags]="user.brands"></app-tags-input>
+        </div>
+
+        <!-- contact info -->
+        <h3>Contact Info</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4" formGroupName="contactInfo">
+            <!-- phone 1 -->
+            <div>
+                <label for="phone1">Phone1</label>
+                <input type="text" placeholder="phone number" class="form-input" formControlName="phone1" >
+            </div>
+             <!-- phone 2 -->
+            <div>
+                <label for="phone2">Phone1</label>
+                <input type="text" placeholder="phone number 2" class="form-input" formControlName="phone2" >
+            </div>
+            <!-- twitter -->
+            <div>
+                <label for="twitter">Twitter url</label>
+                <input type="text" placeholder="twitter" class="form-input" formControlName="twitter" >
+            </div>
+            <!-- linkdedin -->
+            <div>
+                <label for="linkedin">Linkedin url</label>
+                <input type="text" placeholder="linkedin" class="form-input" formControlName="linkedin" >
+            </div>
+            <!-- facebbook -->
+            <div>
+                <label for="">Facebook url</label>
+                <input type="text" placeholder="facebook" class="form-input" formControlName="facebook">
+            </div>
+            <!-- website -->
+            <div>
+                <label for="website">Website</label>
+                <input type="text" placeholder="website" class="form-input" formArrayName="website" formControlName="website">
+            </div>
+            <!-- instagram -->
+            <div>
+                <label for="instagram">Instagram</label>
+                <input type="text" placeholder="instagram" class="form-input" formControlName="instagram">
+            </div>
+        </div>
+
+
+        <div class="flex items-center justify-end">
+            <button class="bg-blue-600 rounded-md shadow-sm p-2">Update bio</button>
+        </div>
+
+        {{aboutForm.value | json}}
+    </form>
+</div>

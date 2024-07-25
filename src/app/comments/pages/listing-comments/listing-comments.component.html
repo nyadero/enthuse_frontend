@@ -1,0 +1,16 @@
+<main>
+  <app-loading-error-indicator [loading]="isLoading">
+     <div>
+       
+     </div>
+
+     <!-- comments list -->
+     <div *ngFor="let comment of comments">
+         
+     </div>
+
+     <app-inquiries-list [listingId]="listingId" [isSeeMoreHidden]="true" ></app-inquiries-list>
+     
+     <!-- {{comments | json}} -->
+  </app-loading-error-indicator>
+</main>

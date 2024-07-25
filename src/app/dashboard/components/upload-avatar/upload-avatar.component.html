@@ -1,0 +1,14 @@
+<div class="w-80 h-80 rounded-sm shadow-sm p-2 bg-white" *ngIf="!isEditingAvatar; else updateAvatar">
+    <img src="{{user.avatar}}" alt="" class="w-full h-full object-cover" >
+    <button (click)="toggleEdit()" >Edit avatar</button>
+</div>
+
+<ng-template #updateAvatar>
+<form [formGroup]="uploadAvatarForm" (ngSubmit)="$event.preventDefault(); uploadAvatar()">
+ <app-fileupload (selectedFilesChanged)="onSelectedFilesChanged($event)"></app-fileupload>
+ <button type="submit">Upload</button>
+</form>
+</ng-template>
+
+
+

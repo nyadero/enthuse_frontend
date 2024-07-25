@@ -1,0 +1,12 @@
+<p>club-posts works!</p>
+<!-- {{posts | json}} -->
+
+<div *ngIf="posts.length <= 0">
+    <h3>No posts</h3>
+</div>
+
+<!-- {{posts | json}} -->
+<div *ngFor="let post of posts">
+    <app-post [post]="post" (likeEvent)="likePost($event)" (postClicked)="makePostActive($event)"
+        [selectedPost]="selectedPost" (deletePostEvent)="deletePost($event)"></app-post>
+</div>

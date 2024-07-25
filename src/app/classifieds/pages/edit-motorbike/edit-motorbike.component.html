@@ -1,0 +1,110 @@
+<main>
+      <form [formGroup]="motorbikeForm"  (ngSubmit)="$event.preventDefault(); submitMotorbikeForm()" >
+        <!-- motorbike name -->
+        <div class="flex flex-col my-1">
+            <label for="name">Name:</label>
+            <input type="text" class="form-input" formControlName="name" placeholder="name of your motorbike" autofocus>
+        </div>
+
+        <!-- motorbike price -->
+        <div class="flex flex-col my-1">
+            <label for="price">Price:</label>
+            <input type="number" class="form-input" formControlName="price" placeholder="price of your motorbike" />
+        </div>
+
+        <!-- motorbike location -->
+        <div class="flex flex-col my-1">
+            <label for="location">location:</label>
+            <input type="text" class="form-input" formControlName="location" placeholder="location of your motorbike" />
+        </div>
+
+        <!-- motorbike manufacture year -->
+        <div class="flex flex-col my-1">
+            <label for="manufactureYear">Manufacture year:</label>
+            <input type="number" class="form-input" formControlName="manufactureYear"
+                placeholder="year of manufacture" />
+        </div>
+
+        <!-- transmission -->
+        <div class="flex flex-col my-1">
+            <label for="transmission">transmission Type</label>
+            <input type="text" class="form-input" formControlName="transmissionType"
+                placeholder="transmission type" />
+        </div>
+
+        <!-- motorbike description -->
+        <div class="flex flex-col my-1">
+            <label for="description">Description of your motorbike:</label>
+            <textarea cols="30" rows="10" type="text" class="form-input" formControlName="description"
+                placeholder="describe your motorbike here"></textarea>
+        </div>
+
+        <!-- motorbike photos -->
+        <!-- <app-fileupload formControlName="photos"></app-fileupload> -->
+        <app-fileupload (selectedFilesChanged)="onSelectedFilesChanged($event)"></app-fileupload>
+        {{selectedFiles | json }}
+
+
+        <!-- manufacturer -->
+        <div class="flex flex-col my-1">
+            <label for="manufacturer">Manufacturer:</label>
+            <input type="text" class="form-input" formControlName="manufacturer" placeholder="manufacturer of your motorbike" />
+        </div>
+
+        <!-- motorbike category -->
+        <div class="flex flex-col my-1">
+            <label for="category">Category:</label>
+            <input type="text" class="form-input" formControlName="motorbikeCategory" placeholder="location of your motorbike" />
+        </div>
+
+         <!-- vehicle engine power -->
+        <div class="flex flex-col my-1">
+            <label for="model">Engine power in hp</label>
+            <input type="text" class="form-input" formControlName="enginePower" placeholder="engine power">
+        </div>
+
+        <!-- mileage -->
+        <div class="flex flex-col my-1">
+            <label for="mileage">Mileage:</label>
+            <input type="number" class="form-input" formControlName="mileage" placeholder="mileage of your motorbike" />
+        </div>
+
+        <!-- top speed -->
+        <div class="flex flex-col my-1">
+            <label for="topSpeed">Top speed:</label>
+            <input type="number" class="form-input" formControlName="topSpeed" placeholder="top speed of your motorbike" />
+        </div>
+
+        <!-- engine capacity -->
+        <div class="flex flex-col my-1">
+            <label for="engineCapacity">Engine capacity:</label>
+            <input type="number" class="form-input" formControlName="engineCapacity" placeholder="Engine capacity of your motorbike" />
+        </div>
+
+        <!-- color -->
+        <div class="flex flex-col my-1">
+            <label for="color">Color:</label>
+            <input type="text" class="form-input" formControlName="color" placeholder="color of your motorbike" />
+        </div>
+
+        <!-- fueltype -->
+        <div class="flex flex-col my-1">
+            <label for="fuelType">Fuel type:</label>
+            <input type="text" class="form-input" formControlName="fuelType" placeholder="fuel type of your motorbike" />
+        </div>
+
+          <!-- previous owners -->
+        <div class="flex flex-col my-1">
+            <label for="fuelType">Previous Owners</label>
+            <input type="number" class="form-input" formControlName="previousOwnersCount" placeholder="previous owners" />
+        </div>
+
+
+        <!-- submit button -->
+        <div>
+            <button type="submit">Edit your motorbike</button>
+        </div>
+
+        {{motorbikeForm.value | json}}
+    </form>
+</main>

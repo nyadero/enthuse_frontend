@@ -1,0 +1,20 @@
+<section class="max-sm:w-full mx-auto max-sm:p-3">
+  <div class="bg-white">
+     <app-new-post (newlyAddedPost)="getNewPost($event)" ></app-new-post>
+  </div>
+   
+  <div class="my-4 flex items-center justify-between bg-white p-2 rounded shadow-sm">
+    <button (click)="changeTab('all')" [class.active] = "selectedTab === 'all'">All</button>
+    <button (click)="changeTab('following')" [class.active] = "selectedTab === 'following'">Following</button>
+   </div>
+
+  <div *ngIf="selectedTab === 'all' ">
+    <app-feed [events]="eventSubject.asObservable()"></app-feed>
+  </div>
+
+  <div *ngIf="selectedTab === 'following' ">
+    <app-followed></app-followed>
+  </div>
+  
+</section>
+

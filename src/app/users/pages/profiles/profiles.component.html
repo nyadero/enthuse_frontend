@@ -1,0 +1,33 @@
+<main class="py-3">
+  <app-loading-error-indicator [loading]="isLoading">
+
+  </app-loading-error-indicator>
+  <div class="my-2">
+    search bar
+  </div>
+
+<div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div *ngFor="let profile of profiles" class="bg-white rounded-md shadow-md cursor-pointer" [routerLink]="['/users', profile.id]">
+      <div class="bg-blue-500 h-40 relative overflow-hidden ">
+        <img src="{{profile.coverPicture}}" alt="{{profile.name}}" class="w-full" >
+        <div class="h-10 w-10 overflow-hidden absolute left-5 right-0 bottom-1">
+            <img src="{{profile.avatar}}" alt="{{profile.name}}" class="w-full h-full rounded-full shadow-lg">
+        </div>
+      </div>
+      <div>
+        <h3>{{profile.name}}</h3>
+        <button>Follow</button>
+         <div>
+           <div>
+             {{profile.followersCount}} following
+           </div>
+
+           <div>
+             {{profile.followingCount}} followers
+           </div>
+         </div>
+      </div>
+    </div>
+</div>
+</main>
+

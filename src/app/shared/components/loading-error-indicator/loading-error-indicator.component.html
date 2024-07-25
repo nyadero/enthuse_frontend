@@ -1,0 +1,23 @@
+<ng-container *ngIf="loading; else content">
+    <!-- Loading state -->
+    <div class="flex items-center justify-center">
+        <mat-progress-spinner ></mat-progress-spinner>
+        <h3>Loading </h3>
+    </div>
+</ng-container>
+
+<ng-template #content>
+    <ng-container *ngIf="error; else pageContent">
+        <!-- Error state -->
+        <div>Error: {{ error }}</div>
+    </ng-container>
+
+    <ng-template #pageContent>
+        <!-- Page content goes here -->
+        <ng-content></ng-content>
+    </ng-template>
+
+    <ng-template *ngIf="data.length <= 0">
+        <h3>No data found</h3>
+    </ng-template>
+</ng-template>

@@ -1,0 +1,10 @@
+
+<div *ngIf="posts.length < 1; else postsList">
+  no posts found
+</div>
+
+<ng-template #postsList>
+  <div *ngFor="let post of posts">
+    <app-post [post]="post"></app-post>
+  </div>
+</ng-template>

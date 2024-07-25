@@ -1,0 +1,111 @@
+<main>
+    <!-- header -->
+    <div class="flex py-3 gap-3 justify-between">
+        <div class="flex gap-3 items-center">
+            <button>Back</button>
+
+            <!-- current bid -->
+            current bid
+    
+            <!-- bidding ends -->
+            bid ends
+    
+            <!-- bids sent -->
+            bids
+        </div>
+       
+
+        <div  class="flex gap-3 items-center">
+            <!-- watch -->
+            <button class="border p-2 rounded">Watch</button>
+
+            <!-- share -->
+            <button>Share</button>
+
+            <!-- place bid -->
+            <button (click)="showBidForm()" class="bg-blue-400 rounded shadow p-2 text-white hover:bg-blue-500">Place Bid</button>
+        </div>
+    </div>
+
+    <div *ngIf="isShowBid" class="bg-white w-1/4 rounded shadow mx-auto p-2 absolute left-0 right-0">
+        <app-new-bid [auctionId]="auction.id" ></app-new-bid>
+    </div>
+
+    <hr class="h-0 bg-blue-500 my-3">
+
+    <!-- <div class="flex items-center overflow-hidden">
+        <img *ngFor="let image of auction.listingFiles" src="{{image.url}}" alt="" class="h-96 w-full overflow-hidden object-cover">
+    </div> -->
+
+    <app-listing-photos [listingPhotos]="auction.listingFiles" ></app-listing-photos>
+
+    <section class="my-5 flex items-start gap-5 max-sm:flex-col">
+        <div class="flex-1">
+            <h3>{{auction.name}}</h3>
+
+            <!-- important specs -->
+            <div class="flex items-center gap-4">
+                <!-- mileage -->
+                <div>
+                    <h4>Mileage:</h4>
+                    <span>{{auction.mileage}} kms</span>
+                </div>
+                <!-- owners -->
+                <div>
+                    <h4>Owners:</h4>
+                    <span>{{auction.previousOwnersCount}}</span>
+                </div>
+                <!-- engine -->
+                <div>
+                    <h4>Engine:</h4>
+                    <span>{{auction.engineSize}} cc</span>
+                </div>
+                <!-- horsepower -->
+                <div>
+                    <h4>Horsepower:</h4>
+                    <span>{{auction.enginePower}} bhp</span>
+                </div>
+                <!-- fuel -->
+                <div>
+                    <h4>Fuel:</h4>
+                    <span>{{auction.fuelType}}</span>
+                </div>
+                <!-- gearbox -->
+                <div>
+                    <h4>Transmission:</h4>
+                    <span>{{auction.transmissionType}}</span>
+                </div>
+            </div>
+
+            <!-- description -->
+            <div>
+                <div [innerHTML]="auction.description"></div>
+            </div>
+
+        </div>
+
+        <!-- auctioneer info -->
+        <div class=" w-1/4 max-sm:w-full">
+            <!-- auctioneer info -->
+            <div class="bg-white p-2 rounded shadow-md">
+                auctioneer information
+            </div>
+
+            <!-- bid history -->
+            <div class="bg-white p-2 rounded shadow-md mt-5 h-80 overflow-y-auto">
+                <div class="sticky">
+                    bid history
+                </div>
+                 
+                <div *ngFor="let bid of bids">
+                    <span>{{bid.amount}}</span>
+                    {{bid.bidder.name}}
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- {{auction|json}} -->
+
+</main>

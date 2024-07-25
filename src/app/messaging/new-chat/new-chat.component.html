@@ -1,0 +1,26 @@
+<section>
+      <div *ngIf="recipientSelected; else selectrecipient">
+            <app-chat-details [recipient]="recipient"></app-chat-details>
+        </div>
+   
+</section>
+
+<ng-template #selectrecipient>
+ <div class="bg-gray-50 shadow mb-1">
+        <input type="text" class="w-full p-1" placeholder="Search for mates to contact ">
+    </div>
+
+    <div>
+        <h3>Suggested contacts</h3>
+
+    
+        <div>
+          <!-- {{users | json}} -->
+          <div *ngFor="let user of users">
+             <div (click) = "loadChatDetails(user)">
+                {{user.name}}
+             </div>
+          </div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,52 @@
+<div class="min-h-banner flex items-center justify-start relative">
+    <div class="w-4/5 mx-auto py-3">
+        <div class="w-1/2">
+            <h3 class="mb-1 text-lg">Vehicles Classifieds</h3>
+            <p>
+                Find sportbikes, dirtbikes, cafe racers, cruisers, choppers and more motorcycles for sale in our
+                markeplace section.
+                You can also list your motobike for sale if you are willing to sell.
+            </p>
+
+            <div class="my-3">
+                <button routerLink="/classifieds/new-motorbike"
+                        class="bg-blue-500 py-1 px-6 rounded shadow text-white">List my vehicle</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main>
+    <!-- Fixed search bar container -->
+    <app-vehicles-searchbar [filters]="filters" (emitShowFiltersEvent)="getShowFiltersEvent($event)"></app-vehicles-searchbar>
+
+    <div class="flex max-sm:mt-2">
+        <!-- filters component -->
+<!--        <div #filterContainer class="w-80 max-sm:w-full max-sm:hidden">-->
+<!--            <app-vehicles-filter></app-vehicles-filter>    -->
+<!--        </div>-->
+
+        <!-- listings component -->
+        <div class="flex-1 max-sm:mt-1">
+            <app-loading-error-indicator [loading]="loadingListings">
+            <!-- Listings -->
+            <div class="mt-3">
+                <div *ngIf="listingsList.length <= 0; else listingsContainer">
+                    <h3>No {{category}} listings found</h3>
+                </div>
+            </div>
+            </app-loading-error-indicator>
+        </div>
+    </div>
+
+    <!-- Listings container -->
+    <ng-template #listingsContainer>
+        <section class="grid gap-3 max-sm:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+<!--            [ngClass]="{'grid-cols-3': isFilterVisible, 'grid-cols-4': !isFilterVisible}">-->
+            <div *ngFor="let listing of listingsList">
+                <app-listing [listing]="listing"></app-listing>
+            </div>
+        </section>
+
+    </ng-template>
+</main>

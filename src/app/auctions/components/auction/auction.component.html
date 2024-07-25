@@ -1,0 +1,75 @@
+<div class="bg-white rounded shadow cursor-pointer overflow-hidden" [routerLink]="['/auctions', auction.id]" >
+  <div class="relative">
+    <button class="absolute top-2 right-2 bg-blue-300">Watch</button>
+    <img src="{{auction.listingFiles[0].url}}" alt="" class="h-60 w-full object-cover">
+    <div class="bg-gray-800 p-2 rounded shadow absolute bottom-2 right-2">
+      currentBid ends in
+    </div>
+  </div>
+
+ 
+
+  <h3>{{auction.name}}</h3>
+
+  <div class="flex items-center space-x-3 justify-evenly p-2">
+    <!-- transmission type -->
+    <div class="flex items-center flex-col">
+        <div class="flex items-center justify-center p-2 bg-blue-400 h-10 w-10 rounded-2xl ">
+            icon
+        </div>
+        <span class="capitalize">{{auction.transmissionType}}</span>
+    </div>
+
+    <!-- fuel type -->
+    <div class="flex items-center flex-col">
+        <div class="flex items-center justify-center p-2 bg-blue-400 h-10 w-10 rounded-2xl">
+            icon
+        </div>
+        <span class="capitalize">{{auction.fuelType}}</span>
+    </div>
+
+    <!-- year -->
+    <div class="flex items-center flex-col">
+        <div class="flex items-center justify-center p-2 bg-blue-400 h-10 w-10 rounded-2xl">
+            icon
+        </div>
+        <span class="capitalize">2020</span>
+    </div>
+
+    <!-- mileage -->
+    <div class="flex items-center flex-col">
+        <div class="flex items-center justify-center p-2 bg-blue-400 h-10 w-10 rounded-2xl ">
+            icon
+        </div>
+        <span class="capitalize">{{auction.mileage}}</span>
+    </div>
+
+    <!-- body type -->
+    <div class="flex items-center flex-col">
+        <div class="flex items-center justify-center p-2 bg-blue-400 h-10 w-10 rounded-2xl ">
+            icon
+        </div>
+        <span class="capitalize">{{auction.listingCategory == "Vehicle" ? auction.bodyType :
+            auction.motorbikeCategory }}</span>
+    </div>
+   </div>
+
+   <!-- bids, reserve and auction status -->
+   <div class="flex items-center gap-5 p-2">
+      <!-- reserve -->
+      <div>
+        <span>Reserve</span>
+      </div>
+
+      <!-- bids -->
+      <div>
+        <span>bids count</span>
+      </div>
+
+      <!-- auction status -->
+      <div>
+        <span>status</span>
+      </div>
+   </div>
+
+</div>

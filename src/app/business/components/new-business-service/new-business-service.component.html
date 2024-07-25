@@ -1,0 +1,24 @@
+<div class="bg-white my-3">
+    <h3>add new business service</h3>
+    <form [formGroup]="bServiceForm" (submit)="$event.preventDefault(); addService()" >
+        <!-- name -->
+         <div>
+            <label for="name">Service name</label>
+            <input type="text" placeholder="name of service" formControlName="name" class="form-input">
+         </div>
+         <!-- description -->
+          <div>
+            <label for="description">Service description</label>
+            <input type="text" placeholder="service description" formControlName="description" class="form-input">
+         </div>
+         <!-- price range -->
+         <div>
+            <label for="range">Price range</label>
+            <input type="text" placeholder="price range" formControlName="priceRange" class="form-input">
+         </div>
+
+         <button>add service</button>
+    </form>
+
+    {{bServiceForm.value | json}}
+</div>

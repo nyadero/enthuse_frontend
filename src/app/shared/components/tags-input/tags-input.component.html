@@ -1,0 +1,13 @@
+<div class="mb-2">
+    <div *ngIf="tags.length > 0; noTags" class="flex items-center gap-1 mb-2">
+        <span *ngFor="let tag of tags; let i = index" class="bg-white p-2 rounded shadow">
+            {{tag}}
+            <span (click)="removeTag(i)">x</span>
+        </span>
+    </div>
+    <input type="text" [(ngModel)]="newTag" placeholder="Add tag" (keydown.enter)="$event.preventDefault(); addTag()" class="p-2" >
+</div>
+
+<ng-template #noTags>
+    <h3>No tags added</h3>
+</ng-template>

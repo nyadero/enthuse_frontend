@@ -1,0 +1,28 @@
+<div class="bg-green-400">
+  <input type="file" (change)="onFileSelected($event)" *ngIf="selectedFiles.length <= 0" multiple>
+  <section *ngIf="styleMethod == 'posts' " class="flex items-center gap-2 overflow-x-auto">
+    <div *ngFor="let file of selectedFiles; let i = index">
+      <div>
+        <button (click)="removeImage(i)">Remove </button>
+      </div>
+      <div class="h-14 w-14 overflow-hidden object-cover">
+        <img *ngIf="file.type.startsWith('image/')" [src]="imagePreviews[i]" alt="File Preview"
+          class="w-full h-full rounded-sm shadow-sm ">
+      </div>
+    </div>
+  </section>
+
+  <!-- display files for listing -->
+  <section *ngIf="styleMethod == 'listing' " class="flex items-center gap-2 overflow-x-auto">
+    <div *ngFor="let file of selectedFiles; let i = index">
+      <div class="h-96 w-96 overflow-hidden object-cover relative">
+        <div class="absolute top-2 right-2 bg-red-500">
+          <button (click)="removeImage(i)">Remove </button>
+        </div>
+        <img *ngIf="file.type.startsWith('image/')" [src]="imagePreviews[i]" alt="File Preview"
+          class="h-full object-cover rounded-sm shadow-sm ">
+      </div>
+    </div>
+  </section>
+
+</div>

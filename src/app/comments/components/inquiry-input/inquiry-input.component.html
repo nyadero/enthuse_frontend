@@ -1,0 +1,17 @@
+<div *ngIf="user; else notLoggedIn">
+    <form  [formGroup] = "listingInquiryForm" (ngSubmit)="$event.preventDefault(); inquireListing()" >
+        <textarea formControlName="comment" id="" cols="5" rows="5" placeholder="what is your inquiry" class="form-input"></textarea>
+        <div class="flex items-center justify-end">
+            <button type="submit" [disabled]="listingInquiryForm.invalid" class="bg-blue-500 text-white rounded shadow p-2" > {{submitLabel}} </button>
+            <button *ngIf="hasCancelButton" type="button">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<ng-template #notLoggedIn >
+    <div class="h-48">
+            <h3>Login to join this converstaion</h3>
+    </div>
+</ng-template>
+
+{{listingInquiryForm.value | json}}

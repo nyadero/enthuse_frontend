@@ -1,0 +1,6 @@
+{{selectedPost | json}}
+
+<div *ngFor="let post of posts">
+    <app-post [post]="post" (likeEvent)="likePost($event)" (postClicked)="makePostActive($event)" [selectedPost]="selectedPost" (deletePostEvent)="deletePost($event)"></app-post>
+</div>
+

@@ -1,0 +1,53 @@
+<div>
+    <!-- {{userListings | json}} -->
+    <div>
+        <button (click)="deleteAllMyClassifieds()">Delete all listings</button>
+    </div>
+
+    <div *ngIf="userListings.length <= 0; else listingsList">
+        {{httpResponse.message}}
+        <h3>Found no listings</h3>
+    </div>
+
+
+    <ng-template #listingsList>
+        <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div *ngFor="let listing of userListings">
+                <div class="bg-gray-50 rounded shadow p-2">
+
+                    <div class="flex items-center justify-between">
+                        <h3>{{listing.name}}</h3>
+                        <h4>{{listing.price}}</h4>
+                    </div>
+
+                
+                    <div class="flex items-center justify-center bg-gray-100">
+            <img [src]="listing.listingFiles[0] ? listing.listingFiles[0].url : '/assets/car.jpg' " alt=""
+                (load)="imageLoaded()"
+                class="h-60 object-cover rounded shadow-sm">
+                <!-- <app-listing-images [listingId]="listing.id"></app-listing-images> -->
+        </div>
+
+                    <div class="flex items-center justify-between space-x-4 mt-2">
+                        
+                        <!-- toggle between sold and not sold -->
+                        <!-- <button type="menu">IsSold</button> -->
+                        <app-toggle  [listingId]="listing.id" [isSold]="listing.isSold" ></app-toggle>
+
+                        <div class="flex items-center justify-end space-x-4">
+                            <button *ngIf="listing.listingType == 'Vehicle'  "
+                                [routerLink]="['/dashboard/classifieds/edit', listing.id]">edit</button>
+                            <button *ngIf="listing.listingType == 'Motorbike'  "
+                                [routerLink]="['/classifieds/edit-motorbike', listing.id]">edit</button>
+                            <button (click)="deleteClassified(listing.id)">delete</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </ng-template>
+
+</div>

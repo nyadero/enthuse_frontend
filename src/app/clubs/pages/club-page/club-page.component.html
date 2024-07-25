@@ -1,0 +1,70 @@
+<app-loading-error-indicator [loading]="isLoading">
+     <main *ngIf="!club; else showClub">
+       <h3>not found</h3>
+    </main>
+</app-loading-error-indicator>
+
+<ng-template #showClub>
+<div class="hero overflow-hidden flex items-center justify-center">
+    <img src="{{club.clubCoverpic}}" alt="" class="w-full object-contain">
+</div>
+
+<main class="w-2/5 max-sm:w-full mx-auto">
+    <!-- header -->
+    <div class="flex items-center gap-4 my-2">
+        <div class="w-24 h-24 flex items-center justify-center">
+            <img src="{{club.clubLogo}}" alt="" class="w-full h-full object-cover rounded-full">
+        </div>
+
+        <div class="flex-1">
+            <h3>{{club.clubName}}</h3>
+            {{club.totalMembers}} members
+            <h3>Location</h3>
+        </div>
+
+        <!-- follow and join actions -->
+        <div class="flex items-center gap-2">
+            <button class="bg-blue-500 text-white p-2 rounded shadow-sm" (click)="joinClub(club.id)"> {{isMember ? "Leave" : "Join"}} Club</button>
+        </div>
+    </div>
+
+
+    <div class="bg-white rounded-md shadow-md p-2 my-3 gap-5 flex items-center">
+        <button (click)="changeTab('about')" [class.active]="selectedTab === 'about'">About</button>
+        <button (click)="changeTab('posts')" [class.active]="selectedTab === 'posts'">Posts</button>
+        <button (click)="changeTab('garage')" [class.active]="selectedTab === 'garage'">Garage</button>
+        <button (click)="changeTab('events')" [class.active]="selectedTab === 'events'">Events</button>
+        <button (click)="changeTab('members')" [class.active]="selectedTab === 'members'">members</button>
+    </div>
+
+   
+    <!-- new post -->
+    <app-new-post *ngIf="isMember" [forumId]="club.id" (newlyAddedPost)="getNewPost($event)"></app-new-post>
+
+     <!-- show about component if tab is about -->
+     <div *ngIf="selectedTab === 'about' ">
+        about
+        {{club.clubDescription}}
+    </div>
+
+    <!-- show posts component if tab is posts -->
+    <div *ngIf="selectedTab === 'posts' ">
+        <app-club-posts [clubId]="club.id" [events]="eventSubject.asObservable()"></app-club-posts>
+    </div>
+
+    <!-- members -->
+    <div *ngIf="selectedTab === 'members' ">
+        <app-club-members [clubId] = "club.id"></app-club-members>
+    </div>
+
+    <!-- garage -->
+    <div *ngIf="selectedTab === 'garage' ">
+        <app-club-garage [clubId]="club.id" ></app-club-garage>
+    </div>
+
+    <!-- events -->
+    <div *ngIf="selectedTab === 'events' ">
+        <app-club-events [clubId]="club.id" ></app-club-events>
+    </div>
+</main>
+</ng-template>

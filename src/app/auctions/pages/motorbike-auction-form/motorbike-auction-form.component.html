@@ -1,0 +1,244 @@
+<section class="py-3">
+    <!-- {{businessId}} -->
+     <form [formGroup]="motorbikeAuctionForm"  (ngSubmit)="$event.preventDefault(); submitMotorbikeAuctionForm()" >
+        <!-- start date and end date -->
+        <div class="flex items-start gap-4 max-sm:flex-col max-sm:gap-0">
+            <!-- start date -->
+            <div class="form-control">
+                <label for="startDate">Start Date</label>
+                <input type="datetime-local" class="form-input" formControlName="startDate" >
+            </div>
+            <!-- end date -->
+            <div class="form-control">
+                <label for="endDate">End Date</label>
+                <input type="datetime-local" class="form-input" formControlName="endDate" >
+            </div>
+        </div>
+        <!-- starting bid and reserve -->
+        <div class="flex items-start gap-4 max-sm:flex-col max-sm:gap-0">
+            <!-- start date -->
+            <div class="form-control">
+                <label for="startingBid">Starting bid</label>
+                <input type="number" class="form-input" formControlName="startingBid" >
+            </div>
+            <!-- end date -->
+            <div class="form-control">
+                <label for="expectedReserve">Expected Reserve</label>
+                <input type="number" class="form-input" formControlName="expectedReserve" >
+            </div>
+        </div>
+        <!-- motorbike name -->
+        <div class="flex flex-col my-1">
+            <label for="name">Name:</label>
+            <input type="text" class="form-input" formControlName="name" placeholder="name of your motorbike" >
+             <!-- display validation error -->
+                <div *ngIf="motorbikeAuctionForm.get('name')?.hasError('required') && motorbikeAuctionForm.get('name')?.touched">
+                    <h3 class="validation-error">Motorbike name is required</h3>
+                </div>
+        </div>
+
+        <!-- motorbike price -->
+        <div class="flex flex-col my-1">
+            <label for="price">Price:</label>
+            <input type="number" class="form-input" formControlName="price" placeholder="price of your motorbike" />
+             <!-- display validation error -->
+                <div *ngIf="motorbikeAuctionForm.get('price')?.hasError('required') && motorbikeAuctionForm.get('price')?.touched">
+                    <h3 class="validation-error">Motorbike price is required</h3>
+                </div>
+        </div>
+
+        <!-- motorbike location -->
+        <div class="flex flex-col my-1">
+            <label for="location">location:</label>
+            <input type="text" class="form-input" formControlName="location" placeholder="location of your motorbike" />
+             <!-- display validation error -->
+                <div *ngIf="motorbikeAuctionForm.get('location')?.hasError('required') && motorbikeAuctionForm.get('location')?.touched">
+                    <h3 class="validation-error">Motorbike location is required</h3>
+                </div>
+        </div>
+
+       
+        <!-- motorbike description -->
+        <div class="flex flex-col my-1">
+            <label for="description">Description of your motorbike:</label>
+            <textarea cols="30" rows="10" type="text" class="form-input" formControlName="description"
+                placeholder="describe your motorbike here"></textarea>
+        </div>
+
+      
+         <!-- manufacture year and previous owners -->
+            <div class="flex  items-center  gap-2">
+                <!-- manufacture year -->
+                <div class="form-control w-full">
+                    <label for="yom">Manufacture Year</label>
+                    <input type="number" formControlName="manufactureYear" placeholder="manufacture year"
+                        class="form-input">
+
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeAuctionForm.get('manufactureYear')?.hasError('required') && motorbikeAuctionForm.get('manufactureYear')?.touched">
+                        <h3 class="validation-error">Motorbike manufacture year is required</h3>
+                    </div>
+                </div>
+                <!-- previous owners -->
+                <div class="form-control w-full">
+                    <label for="owners">Previous Owners</label>
+                    <input type="number" formControlName="previousOwnersCount" placeholder="previous owners"
+                        class="form-input">
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeAuctionForm.get('previousOwners')?.hasError('required') && motorbikeAuctionForm.get('previousOwners')?.touched">
+                        <h3 class="validation-error">Motorbike previous owners is required</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- manufacturer and category -->
+            <div class="flex  items-center  gap-2">
+                <!-- manufacturer -->
+                <div class="form-control w-full">
+                    <label for="make">Manufacturer</label>
+                    <select formControlName="manufacturer" class="form-input">
+                        <option value="_">Manufacturer</option>
+                        <option value="{{manufacturer.value}}" *ngFor="let manufacturer of motorbikeManufacturers">
+                            {{manufacturer.name}} </option>
+                    </select>
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeAuctionForm.get('manufacturer')?.hasError('required') && motorbikeAuctionForm.get('manufacturer')?.touched">
+                        <h3 class="validation-error">Motorbike manufacturer is required</h3>
+                    </div>
+                </div>
+
+                <!-- category -->
+                <div class="form-control">
+                    <label for="model">Category</label>
+                    <select formControlName="motorbikeCategory" class="form-input">
+                        <option value="_">Category</option>
+                        <option value="{{manufacturer.value}}" *ngFor="let manufacturer of motorbikeCategories">
+                            {{manufacturer.name}} </option>
+                    </select>
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeAuctionForm.get('category')?.hasError('required') && motorbikeAuctionForm.get('category')?.touched">
+                        <h3 class="validation-error">Motorbike category is required</h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- engine capacity and power -->
+            <div class="flex  items-center  gap-2">
+                <!-- engineCapacity -->
+                <div class="form-control w-full">
+                    <label for="engineCapacity">Engine Capacity</label>
+                    <input type="number" formControlName="engineCapacity" placeholder="engine capacity"
+                        class="form-input">
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeAuctionForm.get('engineCapacity')?.hasError('required') && motorbikeAuctionForm.get('engineCapacity')?.touched">
+                        <h3 class="validation-error">Motorbike engine capacity is required</h3>
+                    </div>
+                </div>
+
+                <!-- engine power -->
+                <div class="form-control w-full">
+                    <label for="enginePower">Engine Power</label>
+                    <input type="number" formControlName="enginePower" placeholder="engine power" class="form-input">
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeAuctionForm.get('enginePower')?.hasError('required') && motorbikeAuctionForm.get('enginePower')?.touched">
+                        <h3 class="validation-error">Motorbike engine power is required</h3>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- transmission and top topSpeed -->
+            <div class="flex  items-center  gap-2">
+                <!-- transmission -->
+                <div class="form-control w-full">
+                    <label for="transmission">Transmission</label>
+                    <select formControlName="transmissionType" class="border flex-1 w-full p-2 form-input">
+                        <option value="Default">Transmission</option>
+                        <option value="{{transmission.value}}" *ngFor="let transmission of transmission_types">
+                            {{transmission.name}} </option>
+                    </select>
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeAuctionForm.get('transmissionType')?.hasError('required') && motorbikeAuctionForm.get('transmissionType')?.touched">
+                        <h3 class="validation-error">Motorbike transmission type is required</h3>
+                    </div>
+                </div>
+
+                <!-- top speed -->
+                <div class="form-control w-full">
+                    <label for="topSpeed">Top speed km</label>
+                    <input type="number" formControlName="topSpeed" placeholder="top speed" class="form-input">
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeAuctionForm.get('topSpeed')?.hasError('required') && motorbikeAuctionForm.get('topSpeed')?.touched">
+                        <h3 class="validation-error">Motorbiketop speed is required</h3>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- fueltype, mileage  and consumption -->
+            <div class="flex  items-center  gap-2">
+                <!-- mileage -->
+                <div class="form-control w-full">
+                    <label for="mileage">mileage</label>
+                    <input type="number" formControlName="mileage" placeholder="mileage" class="form-input">
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeAuctionForm.get('mileage')?.hasError('required') && motorbikeAuctionForm.get('mileage')?.touched">
+                        <h3 class="validation-error">Motorbike mileage is required</h3>
+                    </div>
+                </div>
+
+                <!-- fueltype -->
+                <div class="form-control w-full">
+                    <label for="fuelType">Fuel type</label>
+                    <select formControlName="fuelType" class="border flex-1 w-full p-2 form-input">
+                        <option value="">Fuel Type</option>
+                        <option value="{{fueltype.value}}" *ngFor="let fueltype of fueltypes"> {{fueltype.name}}
+                        </option>
+                    </select>
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeAuctionForm.get('fuelType')?.hasError('required') && motorbikeAuctionForm.get('fuelType')?.touched">
+                        <h3 class="validation-error">Motorbike fuel type is required</h3>
+                    </div>
+                </div>
+
+                <!-- consumption -->
+                <div class="form-control w-full">
+                    <label for="consumption">Fuel consumption</label>
+                    <input type="text" formControlName="fuelConsumption" placeholder="fuel consumption"
+                        class="form-input">
+                    <!-- display validation error -->
+                    <div
+                        *ngIf="motorbikeAuctionForm.get('fuelConsumption')?.hasError('required') && motorbikeAuctionForm.get('fuelConsumption')?.touched">
+                        <h3 class="validation-error">Motorbike estimated fuel consumption is required</h3>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- photos -->
+            <div>
+                <app-fileupload (selectedFilesChanged)="onSelectedFilesChanged($event)"
+                    styleMethod="listing"></app-fileupload>
+            </div>
+
+
+
+        <!-- submit button -->
+        <div>
+            <button type="submit">Submit your motorbike</button>
+        </div>
+
+        {{motorbikeAuctionForm.value | json}}
+    </form>
+</section>

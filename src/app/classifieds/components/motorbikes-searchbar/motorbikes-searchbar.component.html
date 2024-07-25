@@ -1,0 +1,14 @@
+<!-- <div class="scrollable bg-white p-2 mb-4 rounded shadow flex-1 sticky" >
+  <p>motorbikes-searchbar works!</p>
+  {{scrollPosition}}
+  <button (click)="showFilters()">{{isShowFilters ? "Hide" : "Show"}} filters</button>
+</div> -->
+
+<div class="flex scrollable shadow rounded p-2 mb-4 bg-white w-full sticky " >
+    <div *ngFor="let filter of queryParams | keyvalue" class="border-2 rounded shadow p-1 ">
+        {{ filter.key }} : {{ filter.value }}
+        <button (click)="deleteFilter(filter.key)">X</button>
+    </div>
+
+    <button (click)="showFilters()">{{isShowFilters ? "Hide" : "Show"}} filters</button>
+</div>

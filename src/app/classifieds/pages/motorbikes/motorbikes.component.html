@@ -1,0 +1,47 @@
+<div class="min-h-banner flex items-center justify-start relative">
+    <div class="w-4/5 mx-auto py-3">
+        <div class="w-1/2">
+            <h3 class="mb-1 text-lg">Motorbikes Classifieds</h3>
+            <p>
+                Find sportbikes, dirtbikes, cafe racers, cruisers, choppers and more motorcycles for sale in our
+                markeplace section.
+                You can also list your motobike for sale if you are willing to sell.
+            </p>
+
+            <div class="my-3">
+                <button routerLink="/classifieds/new-motorbike"
+                    class="bg-blue-500 py-1 px-6 rounded shadow text-white">List my motorbike</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="relative">
+
+    <app-motorbikes-searchbar [filters]="filters" (emitShowFilterEvent)="getShowFilterEvent($event)"></app-motorbikes-searchbar>
+
+    <!-- filters and sort component -->
+        <div *ngIf="isShowFilters" class="w-1/2 mx-auto fixed right-0 left-0 top-40" >
+            <app-motorbikes-filter></app-motorbikes-filter>
+        </div>
+
+        <div class="flex-1">
+            <div *ngIf="listingsList.length <= 0; else listingsContainer">
+                <h3>No motorbikes listings found</h3>
+            </div>
+        </div>
+
+
+</main>
+
+<ng-template #listingsContainer>
+    <div class="">
+         <section class="grid gap-3 max-sm:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+<!--            [ngClass]="{'grid-cols-3': isFilterVisible, 'grid-cols-4': !isFilterVisible}"-->
+<!--         >-->
+            <div *ngFor="let listing of listingsList">
+                <app-listing [listing]="listing"></app-listing>
+            </div>
+        </section>
+    </div>
+</ng-template>

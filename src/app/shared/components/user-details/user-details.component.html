@@ -1,0 +1,17 @@
+<p>user-details works!</p>
+<div
+ class="my-3 bg-white rounded shadow h-max p-2 flex items-center justify-center flex-col w-80  max-sm:w-full">
+    <div class="w-24 h-24 object-cover rounded-full overflow-hidden flex items-center justify-center">
+        <img src="{{user.avatar}}" alt="{{user.name}}" class="w-full h-full object-cover">
+    </div>
+    <h3>{{user.name}}</h3>
+    <div>
+        <button>Call</button>
+        <button [routerLink]="['/chat']" >Message</button>
+        <button>Share</button>
+    </div>
+
+    <div *ngIf="isListing" >
+        <button>View user stock</button>
+    </div>
+</div>

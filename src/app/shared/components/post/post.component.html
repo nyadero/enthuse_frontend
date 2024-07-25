@@ -1,0 +1,118 @@
+<!-- {{post | json}} -->
+<!-- {{isSelectedPost()}} -->
+<!-- {{selectedPost}} -->
+<!-- {{isFollowingBusiness}} -->
+<div class="bg-gray-50 mb-3 p-2 max-h-min rounded shadow-sm w-full">
+    <!-- <a [routerLink]="['posts', post.id]">View</a> -->
+    <div class="flex items-center justify-between">
+        <div *ngIf="post.postOwner == 'User' " class="flex items-center gap-3">
+            <div class="h-10 w-10  flex items-center justify-center object-cover overflow-hidden">
+                <img src="{{post.user.avatar}}" alt="" loading="lazy" class="w-full h-full rounded-full shadow-md">
+            </div>
+
+            <div class="">
+                <h3 [routerLink]="['profile', post.user.name]" class="capitalize">{{post.user.name}}</h3>
+                <h4>{{ post.createdAt }}</h4>
+            </div>
+        </div>
+
+        <!-- business details-->
+        <div *ngIf="post.postOwner == 'Business' " class="flex items-center gap-3">
+            <div class="h-10 w-10  flex items-center justify-centerobject-cover overflow-hidden">
+                <img src="{{post.business.logo}}" alt="" loading="lazy" class="w-full h-full rounded-full shadow-md">
+            </div>
+
+            <div class="">
+                <h3 [routerLink]="['/business', post.business.name]">{{post.business.name}}</h3>
+                <!-- <h4>{{ post.createdAt}}</h4> -->
+            </div>
+        </div>
+
+        <!-- forum details -->
+        <div *ngIf="post.postOwner == 'Club' " class="flex items-center gap-3">
+            <div class="h-10 w-10  flex items-center justify-center object-cover overflow-hidden">
+                <img src="{{post.club.clubLogo}}" alt="" loading="lazy" class="w-full h-full rounded-full shadow-md">
+            </div>
+            <div class="">
+                <h3>{{post.club.clubName}}</h3>
+                <h3>{{post.user.name}}</h3>
+                <h4>{{ post.createdAt}}</h4>
+            </div>
+        </div>
+
+        <!-- follow button and more -->
+        <!-- <div class="flex items-center gap-3">
+            <button class="bg-blue-400 text-white py-1 px-2 rounded shadow" *ngIf="post.postOwner == 'User' "
+                (click)="followUser()"> {{isFollowingUser ? " Unfollow" : "Follow" }} </button>
+            <button class="bg-blue-400 text-white py-1 px-2 rounded shadow" *ngIf="post.postOwner == 'Business' "
+                (click)="followBusiness()"> {{isFollowingBusiness ? " Unfollow" : "Follow" }} </button>
+            <button class="bg-blue-400 text-white py-1 px-2 rounded shadow" *ngIf="post.postOwner == 'Forum' "
+                (click)="joinClub()">{{isForumMember ? "Leave" : "Join"}}</button>
+        </div> -->
+
+        <!-- view post button -->
+        <div>
+            <button [routerLink]="['/posts', post.id]">View</button>
+        </div>
+    </div>
+
+    <hr class="my-1">
+
+    <div>
+        <h3> {{post.title}} </h3>
+        <p>{{post.description}}</p>
+
+        <div *ngIf="post.postType === 'Photo' " class="h-96 overflow-hidden">
+            <img src="{{ post.mediaUrls[0] ? post.mediaUrls[0].url : '/assets/car.jpg' }}" alt={{post.title}}
+                loading="lazy" class="w-full h-full object-cover rounded-md">
+        </div>
+
+        <div *ngIf="post.postType === 'Video' " class="h-96 overflow-hidden">
+            <!-- <img src="{{ post.mediaUrls[0] ? post.mediaUrls[0].url : '/assets/car.jpg' }}" alt={{post.title}}
+                loading="lazy" class="w-full h-full object-cover rounded-md"> -->
+            <video src="{{ post.mediaUrls[0] ? post.mediaUrls[0].url : '/assets/car.jpg' }}" ></video>
+        </div>
+    </div>
+
+    <hr class="my-1">
+
+    <div class="flex items-center mt-2 justify-between">
+        <div class="flex items-center gap-2">
+        <!-- likes count -->
+        <div class="flex items-center gap-2">
+            <div class="flex items-center justify-center">
+                <button type="button" (click)="likePost()" class="{{post.isPostLiked ? 'bg-blue-500' : 'bg-gray-500'}}">
+                    {{post.isPostLiked ? 'Liked' : "Like"}} </button>
+            </div>
+            <p>{{likeCount}}</p>
+        </div>
+        <!-- comments count -->
+        <div class="flex items-center gap-2">
+            <div class="flex items-center justify-center">
+                <button>Comments</button>
+            </div>
+            <p>{{post.commentsCount}}</p>
+        </div>
+
+        <!-- impressions count -->
+        <div class="flex items-center gap-2">
+            <div class="flex items-center justify-center">
+                <button>Views</button>
+            </div>
+            <p>{{post.impressionsCount}}</p>
+        </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+            <!-- share post -->
+            <div class="flex items-center justify-center">
+                <button>Share post</button>
+            </div>
+            <!-- delete post -->
+            <div class="bg-blue-500">
+                <button *ngIf="canDeletePost" (click)="deletePost()">Delete</button>
+            </div>
+        </div>
+    </div>
+
+</div>

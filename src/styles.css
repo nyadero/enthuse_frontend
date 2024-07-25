@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+ul, ol{
+    list-style-type: none;
+}
+main{
+  @apply max-w-max-width mx-auto max-sm:p-3 max-sm:w-full;  
+}
+.hero{
+ @apply h-52 bg-blue-500;
+}
+.form-control{
+  @apply w-full mb-2
+}
+.form-input{
+    @apply p-2 border border-black outline-none rounded-md mt-1 bg-blue-50 w-full
+}
+.active{
+  @apply font-bold
+}
+h1, h2, h3, h4{
+  @apply font-normal
+}
+.validation-error{
+  @apply text-red-400 text-sm mt-1
+}

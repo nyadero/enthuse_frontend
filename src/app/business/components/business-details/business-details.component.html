@@ -1,0 +1,45 @@
+<div class="bg-white shadow rounded p-1 cursor-pointer" [routerLink]="['/business', business.id]">
+    <!-- header -->
+    <div class="flex items-center gap-3">
+        <div class="h-10 w-10 flex items-center justify-center rounded-full bg-red-700 shadow-sm overflow-hidden">
+            <img src="{{business.logo}}" alt="{{business.name}}" class="w-full">
+        </div>
+        <div>
+            <h3>{{business.name}}</h3>
+            <h3>{{business.location}}</h3>
+        </div>
+    </div>
+
+    <!-- about -->
+    <div>
+        <p>{{business.about}}</p>
+    </div>
+
+    <div class="flex flex-wrap my-1">
+        <div *ngIf="business.serviceList.length <= 0; else showServices">
+            <h3>{{business.name}} has not added any services it offers</h3>
+        </div>
+    </div>
+
+
+    <!-- ratings -->
+    <div class="">
+        <div *ngIf="business.reviewsCount <= 0; else showRatings">
+           <h3>{{business.name}} has not been reviewed</h3>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #showServices>
+    <div *ngFor="let service of business.serviceList.slice(0, 2)">
+        <div class="bg-gray-200 p-1 rounded m-1">{{service.name}}</div>
+    </div>
+</ng-template>
+
+<ng-template #showRatings>
+    <div class="flex items-center justify-between">
+        <h3>{{business.reviewsCount}} reviews</h3>
+        <h3>{{business.averageRating}}/5.0</h3>
+    </div>
+</ng-template>

@@ -1,0 +1,50 @@
+<!-- {{httpResponse | json}} -->
+<!-- {{httpResponse?.data.listingsCount}} -->
+<!-- {{listings | json}} -->
+<div class="hero flex items-center justify-center">
+    hero
+    <a routerLink="/classifieds/new-listing">New listing</a>
+</div>
+
+<main>
+
+   <!-- <app-searchbar></app-searchbar> -->
+
+    
+    <app-loading-error-indicator [loading]="loadingListings" >
+          <!-- listings category -->
+    <div class="my-2 flex gap-3 overflow-x-auto">
+        <button>All {{allListingsCount}}</button>
+        <button routerLink="/classifieds/vehicles">Vehicles {{vehicleListingsCount}}</button>
+        <button routerLink="/classifieds/motorbikes">Motorbikes {{motorbikeListingsCount}}</button>
+        <button routerLink="/classifieds/bicycles">Bicycles {{bicycleListingsCount}}</button>
+        <button routerLink="/classifieds/boats">Boats {{boatListingsCount}}</button>
+        <button routerLink="/classifieds/airplanes">Airplanes {{airplaneListingsCount}}</button>
+        <button routerLink="/classifieds/spare-parts">Spares {{sparepartListingsCount}}</button>
+    </div>
+
+    <!-- <app-horizontal-slider></app-horizontal-slider> -->
+
+    <!-- listings list -->
+    <div *ngIf="listings.length <= 0; else listingsList">
+        <h3>Found no listings</h3>
+    </div>
+
+      <div *ngIf="loadingListings">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+
+
+    <ng-template #listingsList>
+        <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div *ngFor="let listing of listings">
+                <app-listing [listing]="listing"></app-listing>
+            </div>
+        </div>
+    </ng-template>
+    </app-loading-error-indicator>
+    
+</main>
+
+
+

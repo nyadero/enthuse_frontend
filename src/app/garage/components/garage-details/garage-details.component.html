@@ -1,0 +1,59 @@
+<main class="py-3">
+    <app-loading-error-indicator>
+        <div *ngIf="!garage; else showGarageItem">
+
+        </div>
+    </app-loading-error-indicator>
+   
+</main>
+
+<ng-template #showGarageItem>
+    <app-listing-photos [listingPhotos]="garage.photos"></app-listing-photos>
+    <section class="flex flex-wrap gap-4">
+       <div class="flex-1">
+           {{garage.name}}
+
+           <div>
+               <div>
+                   <h3>The Story</h3>
+                   <p>{{garage.info}}</p>
+               </div>
+
+               <div>
+                   <h3>Info</h3>
+                   <p>{{garage.info}}</p>
+               </div>
+
+               <div>
+                   <h3>Performance Modifications</h3>
+                   <p>{{garage.performanceModifications}}</p>
+               </div>
+
+               <div>
+                   <h3>Cosmetic Modifications</h3>
+                   <p>{{garage.cosmeticModifications}}</p>
+               </div>
+
+           </div>
+       </div>
+
+       <!-- owner info -->
+       <div class="w-80 max-sm:w-full">
+           <app-user-details [user]="garage.user" ></app-user-details>
+       </div>
+   </section>
+
+
+    <hr class="bg-black h-1 my-5">
+
+   <!-- comments -->
+   <div class="min-h-h">
+       <h3 class="text-center text-xl font-semibold">Comments</h3>
+       <app-inquiries-list [garageId]="garageId"></app-inquiries-list>
+   </div>
+
+   <!-- similar garage -->
+   <div class="min-h-h">
+       similar vehicles like
+   </div>
+</ng-template>

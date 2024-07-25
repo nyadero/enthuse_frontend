@@ -1,0 +1,17 @@
+.horizontal-slider-container {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+}
+
+.content {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.slide {
+  flex: 0 0 100%; /* Ensure each slide takes up the full width */
+  box-sizing: border-box;
+  padding: 10px; /* Adjust the padding based on your design */
+  border: 1px solid #ccc; /* Add borders or other styling as needed */
+}

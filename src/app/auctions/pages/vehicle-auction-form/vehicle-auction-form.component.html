@@ -1,0 +1,345 @@
+
+<section>
+    <form [formGroup]="vehicleAuctionForm" (ngSubmit)="submitVehicleAuction()" class="mt-2">
+          <!-- start date and end date -->
+          <div class="flex items-start gap-4 max-sm:flex-col max-sm:gap-0">
+            <!-- start date -->
+            <div class="form-control">
+                <label for="startDate">Start Date</label>
+                <input type="datetime-local" class="form-input" formControlName="startDate" >
+            </div>
+            <!-- end date -->
+            <div class="form-control">
+                <label for="endDate">End Date</label>
+                <input type="datetime-local" class="form-input" formControlName="endDate" >
+            </div>
+        </div>
+        <!-- starting bid and reserve -->
+        <div class="flex items-start gap-4 max-sm:flex-col max-sm:gap-0">
+            <!-- start date -->
+            <div class="form-control">
+                <label for="startingBid">Starting bid</label>
+                <input type="number" class="form-input" formControlName="startingBid" >
+            </div>
+            <!-- end date -->
+            <div class="form-control">
+                <label for="expectedReserve">Expected Reserve</label>
+                <input type="number" class="form-input" formControlName="expectedReserve" >
+            </div>
+        </div>
+        <!-- listing name -->
+        <div class="flex flex-col my-1">
+            <label for="name">Name:</label>
+            <input type="text" class="form-input" formControlName="name" placeholder="name of your listing" autofocus>
+            <!-- display validation error -->
+            <div *ngIf="vehicleAuctionForm.get('name')?.hasError('required') && vehicleAuctionForm.get('name')?.touched">
+                <h3 class="validation-error">Vehicle name is required</h3>
+            </div>
+        </div>
+
+        <!-- price, location and manufacture year -->
+        <div class="flex items-start gap-4 max-sm:flex-col max-sm:gap-0">
+            <!-- listing price -->
+            <div class="form-control w-full">
+                <label for="price">Price:</label>
+                <input type="number" class="form-input" formControlName="price" placeholder="price of your listing" />
+                <!-- display validation error -->
+                <div *ngIf="vehicleAuctionForm.get('price')?.hasError('required') && vehicleAuctionForm.get('price')?.touched">
+                    <h3 class="validation-error">Vehicle price is required</h3>
+                </div>
+            </div>
+
+            <!-- listing location -->
+            <div class="form-control w-full">
+                <label for="location">location:</label>
+                <input type="text" class="form-input" formControlName="location"
+                    placeholder="location of your listing" />
+                <!-- display validation error -->
+                <div *ngIf="vehicleAuctionForm.get('location')?.hasError('required') && vehicleAuctionForm.get('location')?.touched">
+                    <h3 class="validation-error">Vehicle location is required</h3>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- listing description -->
+        <div class="flex flex-col my-1">
+            <label for="description">Description of your listing:</label>
+
+        </div>
+
+        <!-- <ngx-editor  [placeholder]="'Describe your listing here'" [editor]="editor" [editorConfig]="editorConfig" ></ngx-editor> -->
+
+        <ckeditor [editor]="Editor" [config]="editorConfig" [data]="editorContent"
+            (editorChange)="onEditorChange($event)"></ckeditor>
+
+        <!-- manufacture year and previous owners -->
+        <div class="flex items-start gap-4 max-sm:flex-col max-sm:gap-0">
+            <!-- manufacture year -->
+            <div class="form-control w-full">
+                <label for="yom">Manufacture Year</label>
+                <input type="number" formControlName="manufactureYear" placeholder="manufacture year"
+                    class="form-input">
+                <!-- display validation error -->
+                <div
+                    *ngIf="vehicleAuctionForm.get('manufactureYear')?.hasError('required') && vehicleAuctionForm.get('manufactureYear')?.touched">
+                    <h3 class="validation-error">Vehicle manufacture year is required</h3>
+                </div>
+            </div>
+            <!-- previous owners -->
+            <div class="form-control w-full">
+                <label for="owners">Previous Owners</label>
+                <input type="number" formControlName="previousOwnersCount" placeholder="previous owners" class="form-input">
+                <!-- display validation error -->
+                <div
+                    *ngIf="vehicleAuctionForm.get('previousOwnersCount')?.hasError('required') && vehicleAuctionForm.get('previousOwnersCount')?.touched">
+                    <h3 class="validation-error">Vehicle previous owners is required</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- make and model -->
+        <div class="flex items-start gap-4 max-sm:flex-col max-sm:gap-0">
+            <!-- make -->
+            <div class="form-control w-full">
+                <label for="make">Make</label>
+                <select formControlName="make" class="form-input">
+                    <!-- <option value="make">Car Make:</option> -->
+                    <option value="{{carmake}}" *ngFor="let carmake of carMakes"> {{carmake}} </option>
+                </select>
+                <!-- display validation error -->
+                <div *ngIf="vehicleAuctionForm.get('make')?.hasError('required') && vehicleAuctionForm.get('make')?.touched">
+                    <h3 class="validation-error">Vehicle make is required</h3>
+                </div>
+            </div>
+
+            <!-- model -->
+            <div class="form-control">
+                <label for="model">Model</label>
+                <input type="text" formControlName="model" placeholder="model" class="form-input">
+                <!-- display validation error -->
+                <div *ngIf="vehicleAuctionForm.get('model')?.hasError('required') && vehicleAuctionForm.get('model')?.touched">
+                    <h3 class="validation-error">Vehicle model is required</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- doors and seat count -->
+        <div class="flex items-start gap-4 max-sm:flex-col max-sm:gap-0">
+            <!-- doors count -->
+            <div class="form-control w-full">
+                <label for="doorsCount">Doors count</label>
+                <input type="number" formControlName="doorsCount" placeholder="doors count" class="form-input">
+                <!-- display validation error -->
+                <div
+                    *ngIf="vehicleAuctionForm.get('doorsCount')?.hasError('required') && vehicleAuctionForm.get('doorsCount')?.touched">
+                    <h3 class="validation-error">Vehicle number of doors is required</h3>
+                </div>
+            </div>
+
+            <!-- seat count -->
+            <div class="form-control w-full">
+                <label for="seatsCount">Seats Count</label>
+                <input type="number" formControlName="seatCount" placeholder="number of seats" class="form-input">
+                <!-- display validation error -->
+                <div
+                    *ngIf="vehicleAuctionForm.get('seatsCount')?.hasError('required') && vehicleAuctionForm.get('seatCount')?.touched">
+                    <h3 class="validation-error">Vehicle seat count is required</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- acceleration and top speed -->
+        <div class="flex items-start gap-4 max-sm:flex-col max-sm:gap-0">
+            <!-- acceleration -->
+            <div class="form-control w-full">
+                <label for="doorsCount">Acceleration (0-100)</label>
+                <input type="number" formControlName="acceleration" placeholder="acceleration" class="form-input">
+                <!-- display validation error -->
+                <div
+                    *ngIf="vehicleAuctionForm.get('acceleration')?.hasError('required') && vehicleAuctionForm.get('acceleration')?.touched">
+                    <h3 class="validation-error">Vehicle acceleration time is required</h3>
+                </div>
+            </div>
+
+            <!-- top speed -->
+            <div class="form-control w-full">
+                <label for="topSpeed">Top speed km</label>
+                <input type="number" formControlName="topSpeed" placeholder="top speed" class="form-input">
+                <!-- display validation error -->
+                <div *ngIf="vehicleAuctionForm.get('topSpeed')?.hasError('required') && vehicleAuctionForm.get('topSpeed')?.touched">
+                    <h3 class="validation-error">Vehicle top speed is required</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- engine capacity and power -->
+        <div class="flex items-start gap-4 max-sm:flex-col max-sm:gap-0">
+            <!-- engineCapacity -->
+            <div class="form-control w-full">
+                <label for="engineCapacity">Engine Capacity</label>
+                <input type="number" formControlName="engineCapacity" placeholder="engine capacity" class="form-input">
+                <!-- display validation error -->
+                <div
+                    *ngIf="vehicleAuctionForm.get('engineCapacity')?.hasError('required') && vehicleAuctionForm.get('engineCapacity')?.touched">
+                    <h3 class="validation-error">Vehicle engine capacity is required</h3>
+                </div>
+            </div>
+
+            <!-- engine power -->
+            <div class="form-control w-full">
+                <label for="enginePower">Engine Power</label>
+                <input type="number" formControlName="enginePower" placeholder="engine power" class="form-input">
+                <!-- display validation error -->
+                <div
+                    *ngIf="vehicleAuctionForm.get('enginePower')?.hasError('required') && vehicleAuctionForm.get('enginePower')?.touched">
+                    <h3 class="validation-error">Vehicle engine power is required</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- engine position and layout -->
+        <div class="flex items-start gap-4 max-sm:flex-col max-sm:gap-0">
+            <!-- engine position -->
+            <div class="form-control w-full">
+                <label for="enginePosition">Engine Position</label>
+                <select formControlName="enginePosition" class="border flex-1 w-full p-2 form-input">
+                    <option value="">Engine Position</option>
+                    <option value="{{engineposition}}" *ngFor="let engineposition of enginePositions">
+                        {{engineposition}} </option>
+                </select>
+                <!-- display validation error -->
+                <div
+                    *ngIf="vehicleAuctionForm.get('enginePosition')?.hasError('required') && vehicleAuctionForm.get('enginePosition')?.touched">
+                    <h3 class="validation-error">Vehicle engine position is required</h3>
+                </div>
+            </div>
+
+            <!-- engine layout -->
+            <div class="form-control w-full">
+                <label for="engineLayout">Engine Layout</label>
+                <select formControlName="engineLayout" class="border flex-1 w-full p-2 form-input">
+                    <option value="">Engine Layout</option>
+                    <option value="{{enginelayout}}" *ngFor="let enginelayout of engineLayouts">
+                        {{enginelayout}} </option>
+                </select>
+                <!-- display validation error -->
+                <div
+                    *ngIf="vehicleAuctionForm.get('engineLayout')?.hasError('required') && vehicleAuctionForm.get('engineLayout')?.touched">
+                    <h3 class="validation-error">Vehicle engine layout is required</h3>
+                </div>
+            </div>
+
+            <!-- engine aspiration -->
+            <div class="form-control w-full">
+                <label for="engineAspiration">Engine Aspiration</label>
+                <select formControlName="engineAspiration" class="border flex-1 w-full p-2 form-input">
+                    <option value="">Engine Aspiration</option>
+                    <option value="{{engineaspiration}}" *ngFor="let engineaspiration of engineAspirations">
+                        {{engineaspiration}} </option>
+                </select>
+                <!-- display validation error -->
+                <div
+                    *ngIf="vehicleAuctionForm.get('engineAspiration')?.hasError('required') && vehicleAuctionForm.get('engineAspiration')?.touched">
+                    <h3 class="validation-error">Vehicle engine aspiration is required</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- fueltype, mileage  and consumption -->
+        <div class="flex items-start gap-4 max-sm:flex-col max-sm:gap-0">
+            <!-- mileage -->
+            <div class="form-control w-full">
+                <label for="mileage">mileage</label>
+                <input type="number" formControlName="mileage" placeholder="mileage" class="form-input">
+                <!-- display validation error -->
+                <div *ngIf="vehicleAuctionForm.get('mileage')?.hasError('required') && vehicleAuctionForm.get('mileage')?.touched">
+                    <h3 class="validation-error">Vehicle mileage is required</h3>
+                </div>
+            </div>
+
+            <!-- fueltype -->
+            <div class="form-control w-full">
+                <label for="fuelType">Fuel type</label>
+                <select formControlName="fuelType" class="border flex-1 w-full p-2 form-input">
+                    <option value="">Fuel Type</option>
+                    <option value="{{fueltype}}" *ngFor="let fueltype of fuelTypes"> {{fueltype}}
+                    </option>
+                </select>
+                <!-- display validation error -->
+                <div *ngIf="vehicleAuctionForm.get('fuelType')?.hasError('required') && vehicleAuctionForm.get('fuelType')?.touched">
+                    <h3 class="validation-error">Vehicle fuel type is required</h3>
+                </div>
+            </div>
+
+            <!-- consumption -->
+            <div class="form-control w-full">
+                <label for="consumption">Fuel consumption</label>
+                <input type="text" formControlName="fuelConsumption" placeholder="fuel consumption" class="form-input">
+                <!-- display validation error -->
+                <div
+                    *ngIf="vehicleAuctionForm.get('fuelConsumption')?.hasError('required') && vehicleAuctionForm.get('fuelConsumption')?.touched">
+                    <h3 class="validation-error">Vehicle estimated fuel consumption is required</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- transmission and drivetrain -->
+        <div class="flex items-start gap-4 max-sm:flex-col max-sm:gap-0">
+            <!-- transmission -->
+            <div class="form-control w-full">
+                <label for="transmission">Transmission</label>
+                <select formControlName="transmissionType" class="border flex-1 w-full p-2 form-input">
+                    <option value="Default">Transmission</option>
+                    <option value="{{transmission}}" *ngFor="let transmission of transmissionTypes">
+                        {{transmission}} </option>
+                </select>
+                <!-- display validation error -->
+                <div
+                    *ngIf="vehicleAuctionForm.get('transmissionType')?.hasError('required') && vehicleAuctionForm.get('transmissionType')?.touched">
+                    <h3 class="validation-error">Vehicle transmission type is required</h3>
+                </div>
+            </div>
+
+            <!-- drivetrain -->
+            <div class="form-control w-full">
+                <label for="drivetrain">Drive train</label>
+                <select formControlName="driveTrain" class="border flex-1 w-full p-2 form-input">
+                    <option value="">Drivetrain</option>
+                    <option value="{{drivetrain}}" *ngFor="let drivetrain of driveTrains"> {{drivetrain}}</option>
+                </select>
+                <!-- display validation error -->
+                <div
+                    *ngIf="vehicleAuctionForm.get('driveTrain')?.hasError('required') && vehicleAuctionForm.get('driveTrain')?.touched">
+                    <h3 class="validation-error">Vehicle drive train is required</h3>
+                </div>
+            </div>
+
+            <!-- bodytype -->
+            <div class="form-control w-full">
+                <label for="bodyType">Body Type</label>
+                <select formControlName="bodyType" class="border flex-1 w-full p-2 form-input">
+                    <option value="">Body Type</option>
+                    <option value="{{bodytype}}" *ngFor="let bodytype of bodyTypes"> {{bodytype}}</option>
+                </select>
+                <!-- display validation error -->
+                <div *ngIf="vehicleAuctionForm.get('bodyType')?.hasError('required') && vehicleAuctionForm.get('bodyType')?.touched">
+                    <h3 class="validation-error">Vehicle body type is required</h3>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- photos -->
+        <div>
+            <app-fileupload (selectedFilesChanged)="onSelectedFilesChanged($event)"
+                styleMethod="listing"></app-fileupload>
+        </div>
+
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+
+        {{vehicleAuctionForm.value| json }}
+    </form>
+</section>

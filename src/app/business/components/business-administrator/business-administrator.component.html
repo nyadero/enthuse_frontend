@@ -1,0 +1,9 @@
+<div class="bg-white rounded-md shadow-sm p-2 flex items-center justify-center flex-col gap-2">
+    <div class="w-14 h-14 overflow-hidden">
+        <img src="{{manager.user.avatar}}" alt="{{manager.user.name}}" class="w-full h-full object-cover rounded-full shadow-md">
+    </div>
+    <h3 class="text-lg capitalize">{{manager.user.name}}</h3>
+    <span>{{manager.role}}</span>
+
+    <button *ngIf="isManager" (click)="revoke(manager.id)" >Revoke</button>
+</div>

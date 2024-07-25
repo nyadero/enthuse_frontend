@@ -1,0 +1,115 @@
+<div class="mt-3 p-2 bg-blue-400 rounded-lg h-96 shadow-lg overflow-y-scroll z-30">
+  <div class="flex justify-between">
+    <button>Save this search</button>
+    <button (click)="clearFilters()">clear filters</button>
+  </div>
+  <!-- location -->
+  <!-- manufacturer -->
+  <div>
+    <label for="manufacturer">Manufacturer</label>
+       <select name="make" (input)="updateFilter('manufacturer', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <!-- <option value="{{manufacturer.value}}" *ngFor="let manufacturer of motorbikeManufacturers" > {{manufacturer.name}} </option> -->
+            </select>
+  </div>
+  <hr>
+  <!-- category -->
+   <div>
+    <label for="category">Category</label>
+    <select name="category" (input)="updateFilter('category', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <!-- <option value="{{category.value}}" *ngFor="let category of motorbikeCategories" > {{category.name}} </option> -->
+            </select>
+  </div>
+   <!-- price -->
+        <div>
+            <label for="price">Price</label>
+            <div class="flex gap-4">
+                <input type="text" name="" placeholder="price" (input)="updateFilter('minPrice', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <input type="text" placeholder="max price" (input)="updateFilter('maxPrice', $any($event.target).value)" class="border flex-1 w-full p-2" >
+            </div>
+            <input type="range" name="" id="">
+        </div>
+        <hr>
+        <!-- year -->
+          <div>
+            <label for="price">Year</label>
+            <div class="flex gap-4">
+                <input type="text" name="" id="" placeholder="year" (input)="updateFilter('minYear', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <input type="text" placeholder="max year" (input)="updateFilter('maxYear', $any($event.target).value)" class="border flex-1 w-full p-2">
+            </div>
+            <input type="range" name="" id="">
+        </div>
+        <hr>
+         <!-- engineSize -->
+        <div>
+            <label for="price">Engine Size</label>
+            <div class="flex gap-4">
+                <input type="number" placeholder="min size" (input)="updateFilter('minEngineSize', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <input type="number" placeholder="max size" (input)="updateFilter('maxEbgineSize', $any($event.target).value)" class="border flex-1 w-full p-2" >
+            </div>
+            <input type="range" name="" id="">
+        </div>
+        <hr>
+        <!-- mileage -->
+        <div>
+            <label for="mileage">Mileage</label>
+            <div class="flex gap-4">
+                <input type="text" placeholder="min mileage" (input)="updateFilter('minMileage', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <input type="text" placeholder="max mileage" (input)="updateFilter('maxMileage', $any($event.target).value)" class="border flex-1 w-full p-2" >
+            </div>
+            <input type="range" name="" id="">
+        </div>
+        <hr>
+          <!-- engine power -->
+        <div>
+            <label for="power">Engine Power</label>
+            <div class="flex gap-4">
+                <input type="text" placeholder="min hp" (input)="updateFilter('minEnginePower', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <input type="text" placeholder="max hp" (input)="updateFilter('maxEnginePower', $any($event.target).value)" class="border flex-1 w-full p-2" >
+            </div>
+            <input type="range" name="" id="">
+        </div>
+        <hr>
+        <!-- transmission -->
+         <div class="w-full">
+            <label for="transmission">Transmission</label>
+            <select name="make" id="" (input)="updateFilter('transmission', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <!-- <option value="{{transmission.value}}" *ngFor="let transmission of transmission_types" > {{transmission.name}} </option> -->
+            </select>
+         </div>
+        <hr>
+        <!-- fuel type -->
+           <div class="w-full">
+            <label for="bodytype">Fuel Type</label>
+            <select name="make" id="" (input)="updateFilter('fuelType', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <option value="">Fuel Type</option>
+                <!-- <option value="{{fueltype.value}}" *ngFor="let fueltype of fueltypes" > {{fueltype.name}} </option> -->
+            </select>
+         </div>
+        <hr>
+        <!-- top speed -->
+         <div class="w-full">
+            <label for="owners">Top Speed</label>
+            <input type="number" (input)="updateFilter('topSpeed', $any($event.target).value)" class="border flex-1 w-full p-2"/>
+         </div>
+        <hr>
+          <!-- owners -->
+          <div class="w-full">
+            <label for="owners">Owners</label>
+            <input type="number" (input)="updateFilter('previousOwnersCount', $any($event.target).value)" class="border flex-1 w-full p-2"/>
+         </div>
+        <hr>
+
+        <!-- seller type -->
+          <div class="w-full">
+            <label for="bodytype">Seller Type</label>
+            <select name="make" id="" (input)="updateFilter('sellerType', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <option value="">Seller type</option>
+                <!-- <option value="{{sellertype.value}}" *ngFor="let sellertype of listing_owners" > {{sellertype.name}} </option> -->
+            </select>
+         </div>
+        <hr>
+  {{scrollPosition}}
+
+</div>
+
+<!-- {{queryParams | json}} -->

@@ -1,0 +1,27 @@
+<div class="bg-white rounded shadow p-2 cursor-pointer" [routerLink]="['/garages', garage.id]" >
+     <div class="flex items-center justify-between">
+          <h3 class="capitalize">{{garage.name}}</h3>
+     </div>
+     <!-- grage image -->
+     <div class="h-60 w-full flex items-center justify-center">
+          <img src="{{garage.photos[0] ? garage.photos[0].url : '/assets/car.jpg' }}" alt="{{garage.name}}" class="h-full w-full object-cover" >
+     </div>
+     <div class="flex items-center justify-between mt-2">
+           <div class="w-6 h-6 flex items-center justify-center rounded-full shadow overflow-hidden">
+            <img src={{garage.user.avatar}} alt={{garage.user.name}} loading="lazy" class="object-cover h-full w-full">
+        </div>
+         <div class="flex items-center space-x-3">
+          <button>
+               <mat-icon>message</mat-icon> {{garage.commentsCount}}
+          </button>
+          <button (click)="likeGarage(garage.id)">
+               <mat-icon>like</mat-icon> {{likeCount}}
+          </button>
+          <button>
+               <mat-icon>impression</mat-icon> {{garage.impressionsCount}}
+          </button>
+        </div>
+     </div>
+</div>
+
+<!-- [routerLink]="['/garage', garage.id]" -->

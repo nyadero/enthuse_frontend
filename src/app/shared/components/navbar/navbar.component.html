@@ -1,0 +1,55 @@
+<!-- {{userAvatar}} -->
+<nav class="w-full bg-white text-black py-2">
+    <div class="max-w-max-width mx-auto flex items-center justify-between max-sm:w-full max-sm:px-3">
+        <div>
+            <ul class="flex items-center gap-2">
+                <button class="hidden max-sm:block" (click)="emitToggleState()">menu</button>
+                <li><a routerLink="">Enthuze</a></li>
+            </ul>
+        </div>
+
+        <div class="flex items-center max-sm:hidden">
+            <ul class="flex items-center gap-4">
+                <li><a class="text-base" routerLink="/classifieds">Classifieds</a></li>
+                <li><a class="text-base" routerLink="/auctions">Auctions</a></li>
+                <li><a class="text-base" routerLink="/business">Businesses</a></li>
+                <li><a class="text-base" routerLink="/enthuze">Community</a></li>
+                <li><a class="text-base" routerLink="/search">Search</a></li>
+            </ul>
+        </div>
+
+        <!-- links container -->
+        <div *ngIf="!authenticatedUser">
+            <a routerLink="/auth" class="bg-blue-500 text-white text-sm rounded-md shadow-md py-1 px-4">Sign in</a>
+        </div>
+
+        <!-- authenticated user -->
+        <div *ngIf="authenticatedUser" class="flex items-center gap-3 relative">
+            <button class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center"
+                routerLink="/notifications"> <mat-icon>notifications</mat-icon> </button>
+            <button class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center" routerLink="/chat">
+                <mat-icon>message</mat-icon> </button>
+
+            <!-- user avatar with dropdowns -->
+            <div class="">
+                <div class="flex items-center justify-between gap-2">
+                    <img class="w-9 h-9 object-cover rounded-full shadow" src="{{userAvatar}}"
+                        alt={{authenticatedUser.username}} loading="lazy" />
+                    <button class="bg-red-400 flex items-center justify-center" (click)="showDropdown()">
+                        <mat-icon>expand more</mat-icon> </button>
+                </div>
+
+            </div>
+
+            <!-- dropdown menus -->
+            <div *ngIf="isshowDropdown" class="bg-white p-2 rounded shadow-md absolute top-12 w-full z-50">
+                <ul>
+                    <li><a *ngIf="authenticatedUser.role === 'ADMIN' " routerLink="/admin">Admin</a></li>
+                    <li> <a routerLink="/dashboard">Dashboard</a> </li>
+                    <li> <button type="button" (click)="logoutUser()">logout</button> </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</nav>

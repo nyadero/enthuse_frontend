@@ -1,0 +1,29 @@
+<!-- {{post | json}} -->
+<!-- navigate back to posts -->
+<main class="min-h-screen mx-auto w-2/5 max-sm:w-full p-1max-sm:p-3">
+<div>
+    <button routerLink="/posts" class="mb-2 bg-blue-500" >Back</button>
+</div>
+
+<div *ngIf="!post; else postDetails">
+    <h3>No post</h3>
+    <!-- {{httpResponse?.message}} -->
+</div>
+
+<ng-template #postDetails   >
+    <h3>{{post?.title}}</h3>
+    <div class="mt-2 min-h-fit">
+        <div *ngIf="post.postType === 'TEXT' ">
+            <p>{{post.description}}</p>
+        </div>
+
+        <div *ngIf="post.postType === 'MEDIA' " class="h-96 w-full bg-gray-200 rounded-md shadow-sm overflow-hidden object-cover">
+                <img src={{post.mediaUrls[0].url}} alt="{{post.title}}" class="w-full">
+        </div>
+    </div>
+    <!-- {{httpResponse | json}} -->
+
+    <!-- <app-inquiries-list [postId]="post.id"></app-inquiries-list> -->
+</ng-template>
+
+</main>

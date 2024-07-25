@@ -1,0 +1,45 @@
+<div class="hero">
+  <app-upload-coverpic></app-upload-coverpic>
+</div>
+
+
+<main class="relative">
+
+<app-dashboard-nav></app-dashboard-nav>
+
+<hr>
+
+<div>
+<!-- account tab -->
+<div *ngIf="selectedTab == 'account'">
+    <app-account></app-account>
+</div>
+
+<!-- classifieds tab -->
+    <div *ngIf="selectedTab == 'classifieds' ">
+        <app-classifieds-account></app-classifieds-account>
+    </div>
+
+    <!-- my pages tab -->
+    <div *ngIf="selectedTab == 'businesses' ">
+        <app-my-business-pages></app-my-business-pages>
+     </div>
+
+    <!-- my forums tab -->
+    <div *ngIf="selectedTab == 'forums' ">
+        <!-- <app-my-forums></app-my-forums> -->
+    </div>
+
+    <!-- activity -->
+    <div *ngIf="selectedTab == 'activity' ">
+        my activity
+    </div>
+
+    <!-- garage -->
+      <div *ngIf="selectedTab == 'garage' ">
+        <app-user-garage></app-user-garage>
+    </div>
+
+    </div>
+
+</main>

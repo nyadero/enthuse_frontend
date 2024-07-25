@@ -1,0 +1,222 @@
+<div  class="fixed w-80 mx-auto bg-white p-2  rounded-md h-96 shadow-sm overflow-y-scroll z-30 max-sm:bottom-0 max-sm:h-3/4 max-sm:w-5/6 max-sm:left-3 max-sm:right-3" >
+    {{scrollPosition}}
+    <div class="max-sm:w-full">
+    <form>
+        <!-- car make -->
+        <div class="w-full">
+            <select name="make" id="" (input)="updateFilter('make', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <option value="{{carmake.value}}" *ngFor="let carmake of carmakes" > {{carmake.name}} </option>
+            </select>
+        </div>
+        <hr>
+        <!-- car model -->
+         <div class="w-full">
+            <select name="make" id="" (input)="updateFilter('model', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <option value="mustang">mustang</option>
+                <option value="m4">m4</option>
+                <option value="amg">amg</option>
+                <option value="sti">sti</option>
+
+            </select>
+        </div>
+        <hr>
+        <!-- price -->
+        <div>
+            <label for="price">Price</label>
+            <div class="flex gap-4">
+                <input type="text" name="" id="" placeholder="price" (input)="updateFilter('minPrice', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <input type="text" placeholder="max price" (input)="updateFilter('maxPrice', $any($event.target).value)" class="border flex-1 w-full p-2" >
+            </div>
+            <input type="range" name="" id="">
+        </div>
+        <hr>
+        <!-- year -->
+          <div>
+            <label for="price">Year</label>
+            <div class="flex gap-4">
+                <input type="text" name="" id="" placeholder="year" (input)="updateFilter('minYear', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <input type="text" placeholder="max year" (input)="updateFilter('maxYear', $any($event.target).value)" class="border flex-1 w-full p-2">
+            </div>
+            <input type="range" name="" id="">
+        </div>
+        <hr>
+        <!-- mileage -->
+         <div>
+            <label for="mileage">Mileage</label>
+            <div class="flex gap-4">
+                <input type="text" name="mileage" id="" placeholder="" (input)="updateFilter('minMileage', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <input type="text" placeholder="max year" (input)="updateFilter('maxMileage', $any($event.target).value)" class="border flex-1 w-full p-2">
+            </div>
+            <input type="range" name="" id="">
+        </div>
+        <hr>
+        <!-- transmission -->
+         <div class="w-full">
+            <label for="transmission">Transmission</label>
+            <select name="make" id="" (input)="updateFilter('transmissionType', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <option value="{{transmission.value}}" *ngFor="let transmission of transmission_types" > {{transmission.name}} </option>
+            </select>
+         </div>
+        <hr>
+        <!-- number of seats -->
+         <div class="w-full">
+            <label for="number_of_seats">Number of seats</label>
+            <input type="text" name="make" id="" (input)="updateFilter('seatsCount', $any($event.target).value)" class="border flex-1 w-full p-2">            
+         </div>
+        <hr>
+        <!-- number of doors -->
+          <div class="w-full">
+            <label for="number_of_seats">Number of doors</label>
+            <input type="text" name="make" id="" (input)="updateFilter('doorsCount', $any($event.target).value)" class="border flex-1 w-full p-2">            
+         </div>
+        <hr>
+        <!-- body-type -->
+        <div class="w-full">
+            <label for="bodytype">Body Type</label>
+            <select name="make" id="" (input)="updateFilter('bodyType', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <option value="">Body Type</option>
+                <option value="{{bodytype.value}}" *ngFor="let bodytype of bodytypes" > {{bodytype.name}} </option>
+            </select>
+         </div>
+        <hr>
+        <!-- fuel and consumption -->
+        <div class="my-1"> 
+            <div class="flex items-center justify-between">
+                <h3>Fuel and consumption</h3>
+                <button>^</button>
+            </div>
+            <!-- fuel-type -->
+             <div class="w-full">
+            <label for="fueltype">Fuel Type</label>
+            <select name="fueltype" id="" (input)="updateFilter('fuelType', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <option value="">Fuel Type</option>
+                <option value="{{fueltype.value}}" *ngFor="let fueltype of fueltypes" > {{fueltype.name}} </option>
+            </select>
+         </div>
+        <hr>
+        <!-- consuption -->
+         <div class="w-full">
+            <label for="bodytype">Fuel Consumption</label>
+            <select name="make" id="" (input)="updateFilter('bodyType', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <!-- <option value="{{carmake.value}}" *ngFor="let carmake of carmakes" > {{carmake.name}} </option> -->
+            </select>
+         </div>
+        <hr>
+        </div>
+
+        <!-- drivetrain and perfomance -->
+          <div class="my-1"> 
+            <div class="flex items-center justify-between">
+                <h3>Drivetrain and performance</h3>
+                <button>^</button>
+            </div>
+            <!-- fuel-type -->
+             <div class="w-full">
+            <label for="drivetrain">Drivetrain</label>
+            <select name="make" id="" (input)="updateFilter('drivetrain', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <option value="">Drivetrain</option>
+                <option value="{{drivetrain.value}}" *ngFor="let drivetrain of drivetrains" > {{drivetrain.name}} </option>
+            </select>
+         </div>
+        <hr>
+        <!-- acceleration -->
+         <div class="w-full">
+            <label for="bodytype">Acceleration</label>
+            <select name="make" id="" (input)="updateFilter('bodyType', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <!-- <option value="{{carmake.value}}" *ngFor="let carmake of carmakes" > {{carmake.name}} </option> -->
+            </select>
+         </div>
+        <hr>
+        <!-- top speed -->
+         <div class="w-full">
+            <label for="bodytype">Top Speed</label>
+            <select name="make" id="" (input)="updateFilter('bodyType', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <!-- <option value="{{carmake.value}}" *ngFor="let carmake of carmakes" > {{carmake.name}} </option> -->
+            </select>
+         </div>
+        <hr>
+        </div>
+
+        <!-- engine specification -->
+          <div class="my-1"> 
+            <div class="flex items-center justify-between">
+                <h3>Engine Specification</h3>
+                <button>^</button>
+            </div>
+            <!-- size -->
+             <div class="w-full">
+            <label for="bodytype">Engine Size</label>
+            <select name="make" id="" (input)="updateFilter('engineSize', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <!-- <option value="{{carmake.value}}" *ngFor="let carmake of carmakes" > {{carmake.name}} </option> -->
+            </select>
+         </div>
+        <hr>
+        <!-- layout -->
+         <div class="w-full">
+            <label for="bodytype">Engine Layout</label>
+            <select name="make" id="" (input)="updateFilter('engineLayout', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <option value="">Engine Layout</option>
+                <option value="{{enginelayout.value}}" *ngFor="let enginelayout of engine_layouts" > {{enginelayout.name}} </option>
+            </select>
+         </div>
+        <hr>
+
+        <!-- engine position -->
+         <div class="w-full">
+            <label for="bodytype">Engine Position</label>
+            <select name="make" id="" (input)="updateFilter('enginePosition', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <option value="">Engine Position</option>
+                <option value="{{engineposition.value}}" *ngFor="let engineposition of engine_positions" > {{engineposition.name}} </option>
+            </select>
+         </div>
+        <hr>
+
+        <!-- engine power -->
+         <div>
+            <label for="price">Power</label>
+            <input type="text" placeholder="power" class="border flex-1 w-full p-2">
+            <div class="flex gap-4">
+                <input type="text" name="" id="" placeholder="year" (input)="updateFilter('minYear', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <input type="text" placeholder="max year" (input)="updateFilter('maxYear', $any($event.target).value)" class="border flex-1 w-full p-2">
+            </div>
+            <input type="range" name="" id="">
+        </div>
+        <hr>
+        <!-- aspiration -->
+          <div class="w-full">
+            <label for="bodytype">Engine aspiration</label>
+            <select name="make" id="" (input)="updateFilter('engineAspiration', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <option value="">Engine Aspiration</option>
+                <option value="{{engineaspiration.value}}" *ngFor="let engineaspiration of engine_aspirations" > {{engineaspiration.name}} </option>
+            </select>
+         </div>
+         <hr>
+        </div>
+
+        <!-- owners -->
+          <div class="w-full">
+            <label for="bodytype">Owners</label>
+            <select name="make" id="" (input)="updateFilter('previousOwnersCount', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <!-- <option value="{{carmake.value}}" *ngFor="let carmake of carmakes" > {{carmake.name}} </option> -->
+            </select>
+         </div>
+        <hr>
+
+        <!-- seller type -->
+          <div class="w-full">
+            <label for="bodytype">Seller Type</label>
+            <select name="make" id="" (input)="updateFilter('sellerType', $any($event.target).value)" class="border flex-1 w-full p-2">
+                <option value="">Seller type</option>
+                <option value="{{sellertype.value}}" *ngFor="let sellertype of listing_owners" > {{sellertype.name}} </option>
+            </select>
+         </div>
+        <hr>
+    </form>
+    </div>
+</div>
+
+<!-- <div class="slider-container">
+  <input type="range" min="0" max="100" [(ngModel)]="priceRange" (input)="updatePrices()" />
+  <p>Min Price: {{ minPrice }}</p>
+  <p>Max Price: {{ maxPrice }}</p>
+</div> -->

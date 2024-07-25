@@ -1,0 +1,49 @@
+<app-loading-error-indicator [loading]="isLoading" [data]="business">
+    <main *ngIf="!business; else foundPage">
+        no page found
+    </main>
+</app-loading-error-indicator>
+
+<ng-template #foundPage>
+    <div class="hero">
+        <img src="{{business.coverPic}}" alt="" class="h-full w-full object-cover">
+    </div>
+    
+    <main class="gap-5 flex flex-wrap">
+        <section class="flex-1">
+            <!-- navigation -->
+            <div class="bg-white my-3 shadow rounded flex items-center space-x-3 p-2 overflow-x-auto">
+                <button (click)="changeTab('about')" [class.active]="selectedTab === 'about'">About</button>
+                <button *ngIf="business.category === 'Dealership' " (click)="changeTab('products')" [class.active]="selectedTab === 'products'">Classifieds</button>
+                <button (click)="changeTab('posts')" [class.active]="selectedTab === 'posts'">Posts</button>
+                <button (click)="changeTab('ratings')" [class.active]="selectedTab === 'ratings'">Ratings</button>
+            </div>
+    
+            <!-- show about component if tab is about -->
+            <div *ngIf="selectedTab === 'about' ">
+                <app-about-business [business]="business"></app-about-business>
+            </div>
+    
+            <!-- show posts component if tab is posts -->
+            <div *ngIf="selectedTab === 'posts' ">
+                <app-business-posts [businessId] = "business.id" ></app-business-posts> <!-- pass the business id as input -->
+            </div>
+    
+            <!-- ratings -->
+            <div *ngIf="selectedTab === 'ratings' ">
+                <app-business-ratings  [businessId] = "business.id"></app-business-ratings>
+            </div>
+    
+            <!-- show products -->
+            <div *ngIf="selectedTab === 'products' ">
+                <app-business-classifieds [business] = "business" ></app-business-classifieds>
+            </div>
+    
+        </section>
+    
+        <div class="w-80 max-sm:w-full">
+            <app-business-info [business]="business"></app-business-info>
+        </div>
+     
+    </main>
+</ng-template>

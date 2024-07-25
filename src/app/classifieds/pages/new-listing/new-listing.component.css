@@ -1,0 +1,6 @@
+.listing-type{
+    @apply bg-blue-700 text-white py-1 px-3 rounded shadow-md text-lg
+}
+.form-input{
+    @apply p-2 border border-black outline-none rounded-md mt-1 bg-blue-50
+}

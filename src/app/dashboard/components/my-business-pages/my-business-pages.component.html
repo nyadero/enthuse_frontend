@@ -1,0 +1,11 @@
+<main>
+ 
+    <div class="my-3">
+        <button routerLink="/business/add-page" class="bg-blue-500 p-2 rounded-sm shadow-sm">New Page</button>
+    </div>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+       <app-business-page *ngFor="let business of businesses" [business]="business" (deleteBusiness)="deleteBusiness($event)" ></app-business-page>
+    </div>
+    
+</main>

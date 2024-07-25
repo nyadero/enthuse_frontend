@@ -1,0 +1,10 @@
+<div class="border mb-2 bg-white">
+  {{business.name}}
+  <div>
+    <button [routerLink]="['/business', business.name, 'manage']">Manage</button>
+
+    <button [routerLink]="['/business', business.name]">Edit</button>
+    <button (click)="deletePage()">Delete</button>
+   </div>
+</div>
+

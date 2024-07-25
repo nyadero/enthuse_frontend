@@ -1,0 +1,15 @@
+<div class="min-h-96">
+  <!-- {{messages|json}} -->
+  <div *ngFor="let message of messages" class="flex items-center gap-3 bg-blue-400 rounded shadow-sm p-2 my-1">
+    <div class="h-12 w-12 flex items-center justify-center">
+      <img src="{{message.sender.avatar}}" alt="" class="w-full h-full rounded-full object-cover">
+    </div>
+    <div>
+      <h3>{{message.message}}</h3>
+      <h3>date</h3>
+      <!-- {{messageSubject?.body.data.message}} -->
+    </div>
+  </div>
+</div>
+<!-- {{recipient | json }} -->
+<app-chat-input [recipientId]="recipient?.id" [chatId]="chatId" ></app-chat-input>

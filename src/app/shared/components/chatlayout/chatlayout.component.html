@@ -1,0 +1,20 @@
+<div class="sticky top-0 z-10 w-full shadow-md">
+    <app-navbar (toggleShowNavbar)="getToggleState($event)" ></app-navbar>
+</div>
+<main class="relative">
+    <div *ngIf="showSidebar" class="absolute left-2 right-2 top-2">
+      <app-sidebar></app-sidebar>
+    </div>
+    
+    <div class="min-h-screen py-3 flex gap-5 flex-wrap max-sm:gap-4">
+        <div class="max-sm:w-full">
+            <app-chatslist></app-chatslist>
+        </div>
+
+        <div class="flex-1 bg-gray-50 max-sm:min-h-screen">
+            <router-outlet></router-outlet>
+        </div>
+
+    </div>
+</main>
+<app-footer></app-footer>

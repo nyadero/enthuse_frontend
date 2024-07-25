@@ -1,0 +1,22 @@
+<div class="rounded shadow-sm p-2">
+    <form [formGroup]="ratingForm" (ngSubmit)="$event.preventDefault(); addRating()">
+        <!-- review -->
+        <div>
+            <label for="reviw">Review</label>
+            <textarea class="form-input" formControlName="review" cols="2" rows="2"></textarea>
+        </div>
+        <!-- rating -->
+        <app-rating-stars [isNewRating]="true" (valueChange)="ratingChanged($event)"></app-rating-stars>
+
+        <!-- buttons -->
+        <div>
+            <button type="button" (click)="cancelRatinAction()">Cancel</button>
+            <button type="submit">Submit</button>
+        </div>
+
+
+    </form>
+
+    {{ratingForm.value | json}}
+
+</div>

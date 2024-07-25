@@ -1,0 +1,94 @@
+<!-- {{listing | json}} -->
+
+<app-loading-error-indicator [loading]="loadingListing">
+   <main *ngIf="!listing; else displayListing">
+      listing not found
+   </main>
+</app-loading-error-indicator>
+
+<ng-template #displayListing>
+
+<div class="my-2 py-2 w-4/5 mx-auto max-sm:p-3 max-sm:w-full">
+    <div class="flex items-center justify-between">
+        <!-- back button -->
+        <div class="flex items-center gap-3">
+            <button>Back</button>
+            <!-- price -->
+            <h3>{{listing.price}}</h3>
+        </div>
+
+        <!-- actions -->
+        <div class="flex items-center gap-3">
+            <!-- share -->
+            <button>Share</button>
+            <!-- favorite -->
+            <button>Watch</button>
+        </div>
+    </div>
+</div>
+
+<hr class="bg-blue-400 h-1 mb-1">
+
+<main class="py-3">
+ 
+    <section class="flex flex-wrap gap-4 w-full">
+
+        <div class="flex-1 w-full">
+            <app-listing-photos [listingPhotos]="listing.listingFiles"></app-listing-photos>
+
+            <!-- tab for descrption and specifications -->
+            <div>
+                <button>Description</button>
+                <button>Specification</button>
+            </div>
+
+            <div class="flex flex-wrap my-2 items-center justify-center gap-4">
+                <!-- mileage -->
+                <div class="flex items-center justify-center flex-col">
+                    <span>MILEAGE</span>
+                    <h3>{{listing.mileage}}kms</h3>
+                </div>
+                <!-- owners -->
+                <div class="flex items-center justify-center flex-col">
+                    <span>OWNERS</span>
+                    <h3>{{listing.previousOwnersCount}}</h3>
+                </div>
+                <!-- engine -->
+                <div class="flex items-center justify-center flex-col">
+                    <span>ENGINE</span>
+                    <h3>{{listing.engineSize}}CC</h3>
+                </div>
+                <!-- horsepower -->
+                <div class="flex items-center justify-center flex-col">
+                    <span>HORSEPOWER</span>
+                    <h3>{{listing.enginePower}} HP</h3>
+                </div>
+                <!-- fuel -->
+                <div class="flex items-center justify-center flex-col">
+                    <span>FUEL</span>
+                    <h3>{{listing.vfuelType}}</h3>
+                </div>
+                <!-- transmission -->
+                <div class="flex items-center justify-center flex-col">
+                    <span>GEARBOX</span>
+                    <h3>{{listing.vtransmissionType}}</h3>
+                </div>
+            </div>
+
+            <!-- description -->
+            {{listing.description}}
+
+            <app-inquiries-list [listingId]="listing.id"></app-inquiries-list>
+
+        </div>
+
+        <div class="w-80 max-sm:w-full ">
+            <app-business-info *ngIf="listing.sellerType === 'Trade Seller' " [business]="listing.business" [isListing]="true" ></app-business-info>
+            <app-user-details *ngIf="listing.sellerType === 'Private Seller' " [user]="listing.user" [isListing]="true"></app-user-details>
+        </div>
+
+    </section>
+</main>
+
+</ng-template>
+

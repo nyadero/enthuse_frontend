@@ -1,0 +1,29 @@
+<!-- description -->
+<div class="h-max mb-1">
+    <h3 class="text-lg mb-2 font-semibold">Description</h3>
+    <p>{{business.description}}</p>
+</div>
+
+<!-- photos -->
+<div class="h-max mb-1">
+    <h3 class="text-lg mb-2 font-semibold">Photos</h3>
+    <div *ngFor="let photo of business.photos">
+        <div class="w-64 bg-white object-cover rounded-md overflow-hidden flex items-center justify-center">
+            <img src={{photo}} alt="{{business.name}}" loading="lazy">
+        </div>
+    </div>
+</div>
+
+<!-- services -->
+<div class="h-max mb-1">
+    <h3 class="text-lg mb-2 font-semibold">Services</h3>
+    <div *ngFor="let service of business.serviceList" class="bg-white rounded-sm shadow-sm p-2 mb-2">
+        <app-business-service [service]="service"></app-business-service>
+    </div>
+</div>
+
+<!-- map view -->
+<div class="h-max mb-1">
+    <h3 class="text-lg mb-2 font-semibold">Map</h3>
+    <app-mapview></app-mapview>
+</div>

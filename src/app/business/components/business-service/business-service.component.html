@@ -1,0 +1,16 @@
+<div>
+    <div class="flex items-center justify-between">
+        <h3>{{service.name}}</h3>
+        <button *ngIf="isManaging" (click)="deleteService()" >Delete</button>
+    </div>
+
+    <!-- description -->
+    <div>
+        {{service.description}}
+    </div>
+
+    <!-- price -->
+    <div>
+        {{service.priceRange}}
+    </div>
+</div>

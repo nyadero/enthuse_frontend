@@ -1,0 +1,48 @@
+<div class="hero flex items-center justify-center">
+    <h1>Enthuzze helps businesses to grow</h1>
+    <button>Create My Business</button>
+</div>
+
+<main class="py-3">
+
+    <!-- search bar -->
+    <div>
+        <app-business-searchbar></app-business-searchbar>
+    </div>
+
+    <!-- quick navigation -->
+    <div class="flex items-center justify-between my-2">
+       <div class="flex items-center gap-2">
+         <h3>All</h3>
+         <h3>Following</h3>
+       </div>
+
+       <div>
+        <button routerLink="/business/my-business">My Businesses</button>
+       </div>
+    </div>
+
+
+    <div *ngIf="loading; else showBusinesses">
+        loading business pages
+    </div>
+
+    <app-mapview></app-mapview>
+
+</main>
+
+<ng-template #showBusinesses>
+
+    <div *ngIf="businesses.length <= 0; else businessList">
+        Found no business pages
+    </div>
+</ng-template>
+
+<ng-template #businessList>
+    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 my-2 py-2">
+        <div *ngFor="let business of businesses">
+            <app-business-details [business]="business"></app-business-details>
+        </div>
+    </div>
+
+</ng-template>
